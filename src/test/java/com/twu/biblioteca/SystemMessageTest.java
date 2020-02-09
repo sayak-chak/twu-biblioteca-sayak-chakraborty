@@ -31,4 +31,14 @@ class SystemMessageTest {
         assertEquals(expectedOutput, outContent.toString());
     }
 
+    @Test
+    public void testShouldDisplayInvalidOptionMessage() {
+        SystemMessage systemMessage = new SystemMessage();
+
+        systemMessage.invalidOption();
+
+        String expectedOutput = MESSAGE.INVALIDOPTION + "\n";
+
+        assertEquals(expectedOutput, outContent.toString());
+    }
 }
