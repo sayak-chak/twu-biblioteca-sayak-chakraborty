@@ -31,6 +31,7 @@ class BookTest {
     void testShouldDisplayTheBookNameAuthorAndYearOfPublication() {
         Book book = new Book(ADUMMYBOOK.NAME, ADUMMYBOOK.AUTHOR, ADUMMYBOOK.yearOfPublication);
         String expectedOutput = ADUMMYBOOK.NAME +" | "+ ADUMMYBOOK.AUTHOR +" | "+ ADUMMYBOOK.yearOfPublication+"\n";
+
         book.getBookAuthorAndYearOfPublication();
 
 
