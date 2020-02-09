@@ -8,7 +8,7 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class InteractionTest {
+class SystemMessageTest {
     ByteArrayOutputStream outContent;
 
     @BeforeEach
@@ -21,9 +21,9 @@ class InteractionTest {
 
     @Test
     public void testShouldDisplayTheCorrectWelcomeMessage() {
-        Interaction interaction = new Interaction(); // TODO - inconsistency - can we make up our mind if we are singular or plural.
+        SystemMessage systemMessage = new SystemMessage();
 
-        interaction.welcome();
+        systemMessage.welcome();
         //Now you have to validate the output
         String expectedOutput = MESSAGE.WELCOME + "\n"; // Notice the \n for new line.
 
