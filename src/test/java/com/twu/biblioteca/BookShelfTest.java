@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,14 +30,10 @@ class BookShelfTest {
     @Test
     public void testShouldCheckoutABookThatIsInBookList() {
         BookShelf bookShelf = new BookShelf();
-        String expected = "1. " + new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION).getNameAuthorAndYearOfPublication() + "\n";
 
         bookShelf.checkout(DUMMYBOOKS.BOOKTWONAME);
-        outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-        bookShelf.displayListOfBooks();
 
-        assertEquals(expected, outContent.toString());
+        assertEquals(Collections.singletonList(new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION)), bookShelf.books);
     }
 
     @Test
@@ -58,5 +55,6 @@ class BookShelfTest {
 
         assertEquals(expected, outContent.toString());
     }
+
 
 }

@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class BookShelf {
-    private List<Book> books;
+    public List<Book> books;
 
     BookShelf() {
         books = new ArrayList<>(Arrays.asList(new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION), new Book(DUMMYBOOKS.BOOKTWONAME, DUMMYBOOKS.BOOKTWOAUTHOR, DUMMYBOOKS.BOOKTWOYEAROFPUBLICATION)));
