@@ -29,7 +29,7 @@ class BibliotecaAppTest {
         public void testShouldDisplayTheMenu() {
             BookShelf bookShelf = mock(BookShelf.class);
             BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
-            String expectedMenu = "1. List Of Books" + "\n";
+            String expectedMenu = MESSAGE.MENU + "\n";
 
             bibliotecaApp.displayMenu();
 
@@ -56,6 +56,14 @@ class BibliotecaAppTest {
 
             assertEquals(expectedNotification, out.toString());
         }
+
+//        @Test
+//        public void testShouldExitBibliotecaWhenQuitOptionIsChosen(){
+//            BookShelf bookShelf = mock(BookShelf.class);
+//            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
+//
+//
+//        } //NEED TO TEST SYSTEM.EXIT(0)
     }
 
 }
