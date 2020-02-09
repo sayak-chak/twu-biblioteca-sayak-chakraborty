@@ -6,15 +6,15 @@ import java.util.Iterator;
 import java.util.List;
 
 public class BookShelf {
-    public List<Book> books;
+    public List<Book> booksInLibraryNow;
 
     BookShelf() {
-        books = new ArrayList<>(Arrays.asList(new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION), new Book(DUMMYBOOKS.BOOKTWONAME, DUMMYBOOKS.BOOKTWOAUTHOR, DUMMYBOOKS.BOOKTWOYEAROFPUBLICATION)));
+        booksInLibraryNow = new ArrayList<>(Arrays.asList(new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION), new Book(DUMMYBOOKS.BOOKTWONAME, DUMMYBOOKS.BOOKTWOAUTHOR, DUMMYBOOKS.BOOKTWOYEAROFPUBLICATION)));
     }
 
     public void displayListOfBooks() {
         int serialNumber = 1;
-        for (Book book : books) {
+        for (Book book : booksInLibraryNow) {
             System.out.println(serialNumber++ + ". " + book.getNameAuthorAndYearOfPublication());
         }
     }
@@ -22,7 +22,7 @@ public class BookShelf {
 
     public void checkout(String bookName) {
         Book book;
-        Iterator<Book> bookIterator = books.iterator();
+        Iterator<Book> bookIterator = booksInLibraryNow.iterator();
         while (bookIterator.hasNext()) {
             book = bookIterator.next();
             if (book.getName().equals(bookName)) {
@@ -32,6 +32,10 @@ public class BookShelf {
             }
         }
         System.out.println(MESSAGE.CHECKOUTFAIL);
+    }
+
+    public void returnBook(String bookName) {
+        booksInLibraryNow.add(new Book(bookName, DUMMYBOOKS.BOOKTWOAUTHOR, DUMMYBOOKS.BOOKTWOYEAROFPUBLICATION));
     }
 
 }

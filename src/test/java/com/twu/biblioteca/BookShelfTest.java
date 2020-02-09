@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,7 +34,7 @@ class BookShelfTest {
 
         bookShelf.checkout(DUMMYBOOKS.BOOKTWONAME);
 
-        assertEquals(Collections.singletonList(new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION)), bookShelf.books);
+        assertEquals(Collections.singletonList(new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION)), bookShelf.booksInLibraryNow);
     }
 
     @Test
@@ -56,5 +57,13 @@ class BookShelfTest {
         assertEquals(expected, outContent.toString());
     }
 
+    @Test
+    public void testShouldReturnABook() {
+        BookShelf bookShelf = new BookShelf();
 
+        bookShelf.checkout(DUMMYBOOKS.BOOKTWONAME);
+        bookShelf.returnBook(DUMMYBOOKS.BOOKTWONAME);
+
+        assertEquals(Arrays.asList(new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION), new Book(DUMMYBOOKS.BOOKTWONAME, DUMMYBOOKS.BOOKTWOAUTHOR, DUMMYBOOKS.BOOKTWOYEAROFPUBLICATION)), bookShelf.booksInLibraryNow);
+    }
 }
