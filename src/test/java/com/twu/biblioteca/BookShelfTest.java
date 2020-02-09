@@ -32,7 +32,19 @@ class BookShelfTest {
         String expected = "1. " + new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION).getNameAuthorAndYearOfPublication() + "\n";
 
         bookShelf.checkout(DUMMYBOOKS.BOOKTWONAME);
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
         bookShelf.displayListOfBooks();
+
+        assertEquals(expected, outContent.toString());
+    }
+
+    @Test
+    public void testShouldDisplaySuccessMessageOnCheckoutOfABook() {
+        BookShelf bookShelf = new BookShelf();
+        String expected = MESSAGE.SUCCESSFULCHECKOUT + "\n";
+
+        bookShelf.checkout(DUMMYBOOKS.BOOKTWONAME);
 
         assertEquals(expected, outContent.toString());
     }

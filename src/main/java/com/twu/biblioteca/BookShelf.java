@@ -21,6 +21,7 @@ public class BookShelf {
 
     public void checkout(String bookName) {
         books.remove(books.get(1));
+        System.out.println(MESSAGE.SUCCESSFULCHECKOUT);
     }
 
 }
