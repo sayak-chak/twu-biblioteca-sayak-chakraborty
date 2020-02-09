@@ -20,10 +20,10 @@ class BookShelfTest {
     @Test
     public void testShouldDisplayListOfBooksWhenShelfHasMultipleBooks() {
         BookShelf bookShelf = new BookShelf();
-        String expected = "1. " + ADUMMYBOOK.NAME + " | " + ADUMMYBOOK.AUTHOR + " | " + ADUMMYBOOK.YEAROFPUBLICATION + "\n" + "2. " + ADUMMYBOOK.NAME + " | " + ADUMMYBOOK.AUTHOR + " | " + ADUMMYBOOK.YEAROFPUBLICATION + "\n";
-
+        String expected = DUMMYBOOKS.BOOKLIST;
         bookShelf.displayListOfBooks();
 
         assertEquals(expected, outContent.toString());
     }
+
 }

@@ -20,8 +20,8 @@ class BookTest {
 
     @Test
     void testShouldDisplayTheBookName() {
-        Book book = new Book(ADUMMYBOOK.NAME, ADUMMYBOOK.AUTHOR, ADUMMYBOOK.YEAROFPUBLICATION);
-        String expectedOutput = ADUMMYBOOK.NAME + "\n";
+        Book book = new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION);
+        String expectedOutput = DUMMYBOOKS.BOOKONENAME + "\n";
 
         System.out.println(book.getName());
 
@@ -30,8 +30,8 @@ class BookTest {
 
     @Test
     void testShouldDisplayTheBookNameAuthorAndYearOfPublication() {
-        Book book = new Book(ADUMMYBOOK.NAME, ADUMMYBOOK.AUTHOR, ADUMMYBOOK.YEAROFPUBLICATION);
-        String expectedOutput = ADUMMYBOOK.NAME + " | " + ADUMMYBOOK.AUTHOR + " | " + ADUMMYBOOK.YEAROFPUBLICATION + "\n";
+        Book book = new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION);
+        String expectedOutput = DUMMYBOOKS.BOOKONENAME + " | " + DUMMYBOOKS.BOOKONEAUTHOR + " | " + DUMMYBOOKS.BOOKONEYEAROFPUBLICATION + "\n";
 
         System.out.println(book.getNameAuthorAndYearOfPublication());
 
