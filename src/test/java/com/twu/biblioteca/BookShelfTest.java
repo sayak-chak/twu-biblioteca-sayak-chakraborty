@@ -79,4 +79,17 @@ class BookShelfTest {
 
         assertEquals(expected, outContent.toString());
     }
+
+    @Test
+    public void testShouldNotifyOnFailureToReturnABook() {
+        BookShelf bookShelf = new BookShelf();
+        String expected = MESSAGE.RETURNFAIL + "\n";
+        bookShelf.checkout(DUMMYBOOKS.BOOKTWONAME);
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        bookShelf.returnBook("Invalid Book");
+
+        assertEquals(expected, outContent.toString());
+    }
 }

@@ -7,9 +7,11 @@ import java.util.List;
 
 public class BookShelf {
     public List<Book> booksInLibraryNow;
+    private List<Book> checkedOutBooks;
 
     BookShelf() {
         booksInLibraryNow = new ArrayList<>(Arrays.asList(new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION), new Book(DUMMYBOOKS.BOOKTWONAME, DUMMYBOOKS.BOOKTWOAUTHOR, DUMMYBOOKS.BOOKTWOYEAROFPUBLICATION)));
+        checkedOutBooks = new ArrayList<>();
     }
 
     public void displayListOfBooks() {
@@ -28,6 +30,7 @@ public class BookShelf {
             if (book.getName().equals(bookName)) {
                 bookIterator.remove();
                 System.out.println(MESSAGE.SUCCESSFULCHECKOUT);
+                checkedOutBooks.add(book);
                 return;
             }
         }
@@ -35,8 +38,24 @@ public class BookShelf {
     }
 
     public void returnBook(String bookName) {
-        booksInLibraryNow.add(new Book(bookName, DUMMYBOOKS.BOOKTWOAUTHOR, DUMMYBOOKS.BOOKTWOYEAROFPUBLICATION));
-        System.out.println(MESSAGE.SUCCESSFULRETURN);
+        if (thisBookIsInCheckedOutBooks(bookName)) {
+            Book book = bookToBeReturned(bookName);
+            checkedOutBooks.remove(book);
+            booksInLibraryNow.add(book);
+            System.out.println(MESSAGE.SUCCESSFULRETURN);
+        } else System.out.println(MESSAGE.RETURNFAIL);
+    }
+
+    private Book bookToBeReturned(String bookName) {
+        for (Book book : checkedOutBooks) if (book.getName().equals(bookName)) return book;
+        return null; //DEAD CODE
+    }
+
+    private boolean thisBookIsInCheckedOutBooks(String bookName) {
+        for (Book book : checkedOutBooks) {
+            if (book.getName().equals(bookName)) return true;
+        }
+        return false;
     }
 
 }
