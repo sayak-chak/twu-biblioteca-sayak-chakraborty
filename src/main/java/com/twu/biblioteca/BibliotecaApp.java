@@ -11,13 +11,16 @@ public class BibliotecaApp {
         System.out.println(MESSAGE.MENU);
     }
 
-    public void actionOnChoosingAnOptionFromMenu(int choice) throws InvalidOptionException {
-        switch (choice) {
-            case 1:
+    public void actionOnChoosingAnOptionFromMenu(int choice) {
+        try {
+            if (choice == 1) {
                 bookShelf.displayListOfBooks();
-                break;
-            default:
+            } else {
                 throw new InvalidOptionException();
+            }
+        } catch (InvalidOptionException Exception) {
+            System.out.println("Please select a valid option!");
         }
+
     }
 }
