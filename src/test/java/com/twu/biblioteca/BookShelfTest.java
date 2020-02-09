@@ -26,4 +26,15 @@ class BookShelfTest {
         assertEquals(expected, outContent.toString());
     }
 
+    @Test
+    public void testShouldCheckoutABookThatIsInBookList() {
+        BookShelf bookShelf = new BookShelf();
+        String expected = "1. " + new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION).getNameAuthorAndYearOfPublication() + "\n";
+
+        bookShelf.checkout(DUMMYBOOKS.BOOKTWONAME);
+        bookShelf.displayListOfBooks();
+
+        assertEquals(expected, outContent.toString());
+    }
+
 }
