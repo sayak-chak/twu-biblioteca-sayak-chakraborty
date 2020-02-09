@@ -41,7 +41,7 @@ class BibliotecaAppTest {
             BookShelf bookShelf = mock(BookShelf.class);
             BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
 
-            bibliotecaApp.actionOnChoosingAnOptionFromMenu(1);
+            bibliotecaApp.actionOnChoosingAnOptionFromMenu();
 
             verify(bookShelf, times(1)).displayListOfBooks();
         }

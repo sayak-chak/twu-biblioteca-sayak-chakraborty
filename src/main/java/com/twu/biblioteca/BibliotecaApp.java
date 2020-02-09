@@ -7,15 +7,11 @@ public class BibliotecaApp {
         this.bookShelf = bookShelf;
     }
 
-    public static void main(String[] args) {
-        System.out.println("Hello, world!");
-    }
-
     public void displayMenu() {
         System.out.println(MESSAGE.MENU);
     }
 
-    public void actionOnChoosingAnOptionFromMenu(int choice) {
+    public void actionOnChoosingAnOptionFromMenu() {
         bookShelf.displayListOfBooks();
     }
 }
