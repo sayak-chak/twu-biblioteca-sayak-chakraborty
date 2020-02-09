@@ -33,7 +33,7 @@ class BookTest {
         Book book = new Book(ADUMMYBOOK.NAME, ADUMMYBOOK.AUTHOR, ADUMMYBOOK.YEAROFPUBLICATION);
         String expectedOutput = ADUMMYBOOK.NAME + " | " + ADUMMYBOOK.AUTHOR + " | " + ADUMMYBOOK.YEAROFPUBLICATION + "\n";
 
-        System.out.println(book.getAuthorAndYearOfPublication());
+        System.out.println(book.getNameAuthorAndYearOfPublication());
 
 
         assertEquals(expectedOutput, outContent.toString());

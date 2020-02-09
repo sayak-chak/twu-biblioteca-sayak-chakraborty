@@ -18,9 +18,9 @@ class BookShelfTest {
     }
 
     @Test
-    public void testShouldDisplayNamesOfBooksWhenShelfHasMultipleBooks() {
+    public void testShouldDisplayListOfBooksWhenShelfHasMultipleBooks() {
         BookShelf bookShelf = new BookShelf();
-        String expected = "1. " + ADUMMYBOOK.NAME + "\n" + "2. " + ADUMMYBOOK.NAME + "\n";
+        String expected = "1. " + ADUMMYBOOK.NAME + " | " + ADUMMYBOOK.AUTHOR + " | " + ADUMMYBOOK.YEAROFPUBLICATION + "\n" + "2. " + ADUMMYBOOK.NAME + " | " + ADUMMYBOOK.AUTHOR + " | " + ADUMMYBOOK.YEAROFPUBLICATION + "\n";
 
         bookShelf.displayListOfNames();
 
