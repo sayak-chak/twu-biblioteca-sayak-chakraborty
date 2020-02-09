@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 
@@ -37,13 +38,21 @@ class BibliotecaAppTest {
         }
 
         @Test
-        public void testShouldDisplayTheListOfBooksAfterUserChoosesTheAppropriateOptionFromMenu() {
+        public void testShouldDisplayTheListOfBooksAfterUserChoosesTheAppropriateOptionFromMenu() throws InvalidOptionException {
             BookShelf bookShelf = mock(BookShelf.class);
             BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
 
-            bibliotecaApp.actionOnChoosingAnOptionFromMenu();
+            bibliotecaApp.actionOnChoosingAnOptionFromMenu(1);
 
             verify(bookShelf, times(1)).displayListOfBooks();
+        }
+
+        @Test
+        public void testShouldThrowAppropriateExceptionOnChoosingAnInvalidOption() {
+            BookShelf bookShelf = mock(BookShelf.class);
+            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
+
+            assertThrows(InvalidOptionException.class, () -> bibliotecaApp.actionOnChoosingAnOptionFromMenu(0));
         }
     }
 
