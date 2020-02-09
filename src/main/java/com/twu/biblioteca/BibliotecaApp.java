@@ -2,9 +2,11 @@ package com.twu.biblioteca;
 
 public class BibliotecaApp {
     BookShelf bookShelf;
+    private SystemMessage systemMessage;
 
     BibliotecaApp(BookShelf bookShelf) {
         this.bookShelf = bookShelf;
+        systemMessage = new SystemMessage();
     }
 
     public void displayMenu() {
@@ -25,7 +27,7 @@ public class BibliotecaApp {
             }
 
         } catch (InvalidOptionException Exception) {
-            System.out.println("Please select a valid option!");
+            systemMessage.invalidOption();
         }
 
     }

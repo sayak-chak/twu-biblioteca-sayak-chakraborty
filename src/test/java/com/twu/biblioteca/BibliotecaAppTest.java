@@ -50,20 +50,12 @@ class BibliotecaAppTest {
         public void testShouldThrowAppropriateExceptionOnChoosingAnInvalidOption() {
             BookShelf bookShelf = mock(BookShelf.class);
             BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
-            String expectedNotification = "Please select a valid option!" + "\n";
+            String expectedNotification = MESSAGE.INVALIDOPTION + "\n";
 
             bibliotecaApp.actionOnChoosingAnOptionFromMenu(0);
 
             assertEquals(expectedNotification, out.toString());
         }
-
-//        @Test
-//        public void testShouldExitBibliotecaWhenQuitOptionIsChosen(){
-//            BookShelf bookShelf = mock(BookShelf.class);
-//            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
-//
-//
-//        } //NEED TO TEST SYSTEM.EXIT(0)
     }
 
 }
