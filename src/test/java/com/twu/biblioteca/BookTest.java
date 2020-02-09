@@ -11,28 +11,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BookTest {
     ByteArrayOutputStream outContent;
+
     @BeforeEach
-    public void initializeOutputStreams(){
+    public void initializeOutputStreams() {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
     }
 
     @Test
     void testShouldDisplayTheBookName() {
-        Book book = new Book(ADUMMYBOOK.NAME, ADUMMYBOOK.AUTHOR, ADUMMYBOOK.yearOfPublication);
-        String expectedOutput = ADUMMYBOOK.NAME +"\n";
+        Book book = new Book(ADUMMYBOOK.NAME, ADUMMYBOOK.AUTHOR, ADUMMYBOOK.YEAROFPUBLICATION);
+        String expectedOutput = ADUMMYBOOK.NAME + "\n";
 
-        book.getBookName();
+        System.out.println(book.getName());
 
         assertEquals(expectedOutput, outContent.toString());
     }
 
     @Test
     void testShouldDisplayTheBookNameAuthorAndYearOfPublication() {
-        Book book = new Book(ADUMMYBOOK.NAME, ADUMMYBOOK.AUTHOR, ADUMMYBOOK.yearOfPublication);
-        String expectedOutput = ADUMMYBOOK.NAME +" | "+ ADUMMYBOOK.AUTHOR +" | "+ ADUMMYBOOK.yearOfPublication+"\n";
+        Book book = new Book(ADUMMYBOOK.NAME, ADUMMYBOOK.AUTHOR, ADUMMYBOOK.YEAROFPUBLICATION);
+        String expectedOutput = ADUMMYBOOK.NAME + " | " + ADUMMYBOOK.AUTHOR + " | " + ADUMMYBOOK.YEAROFPUBLICATION + "\n";
 
-        book.getBookAuthorAndYearOfPublication();
+        System.out.println(book.getAuthorAndYearOfPublication());
 
 
         assertEquals(expectedOutput, outContent.toString());

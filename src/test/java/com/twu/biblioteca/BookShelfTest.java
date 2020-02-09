@@ -18,14 +18,12 @@ class BookShelfTest {
     }
 
     @Test
-    public void testShouldDisplayNameOfBookWhenShelfHasOneBook() {
+    public void testShouldDisplayNamesOfBooksWhenShelfHasMultipleBooks() {
         BookShelf bookShelf = new BookShelf();
-        String expected = ADUMMYBOOK.NAME + "\n";
+        String expected = "1. " + ADUMMYBOOK.NAME + "\n" + "2. " + ADUMMYBOOK.NAME + "\n";
 
         bookShelf.displayListOfNames();
 
         assertEquals(expected, outContent.toString());
-
-
     }
 }
