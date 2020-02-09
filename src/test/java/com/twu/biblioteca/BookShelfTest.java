@@ -66,4 +66,17 @@ class BookShelfTest {
 
         assertEquals(Arrays.asList(new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION), new Book(DUMMYBOOKS.BOOKTWONAME, DUMMYBOOKS.BOOKTWOAUTHOR, DUMMYBOOKS.BOOKTWOYEAROFPUBLICATION)), bookShelf.booksInLibraryNow);
     }
+
+    @Test
+    public void testShouldNotifyOnSuccessfullyReturningABook() {
+        BookShelf bookShelf = new BookShelf();
+        String expected = MESSAGE.SUCCESSFULRETURN + "\n";
+        bookShelf.checkout(DUMMYBOOKS.BOOKTWONAME);
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        bookShelf.returnBook(DUMMYBOOKS.BOOKTWONAME);
+
+        assertEquals(expected, outContent.toString());
+    }
 }

@@ -36,6 +36,7 @@ public class BookShelf {
 
     public void returnBook(String bookName) {
         booksInLibraryNow.add(new Book(bookName, DUMMYBOOKS.BOOKTWOAUTHOR, DUMMYBOOKS.BOOKTWOYEAROFPUBLICATION));
+        System.out.println(MESSAGE.SUCCESSFULRETURN);
     }
 
 }
