@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 
 class BibliotecaAppTest {
@@ -26,7 +27,8 @@ class BibliotecaAppTest {
 
         @Test
         public void testShouldDisplayTheMenu() {
-            BibliotecaApp bibliotecaApp = new BibliotecaApp();
+            BookShelf bookShelf = mock(BookShelf.class);
+            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
             String expectedMenu = "1. List Of Books" + "\n";
 
             bibliotecaApp.displayMenu();
@@ -34,6 +36,15 @@ class BibliotecaAppTest {
             assertEquals(expectedMenu, out.toString());
         }
 
+        @Test
+        public void testShouldDisplayTheListOfBooksAfterUserChoosesTheAppropriateOptionFromMenu() {
+            BookShelf bookShelf = mock(BookShelf.class);
+            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
+
+            bibliotecaApp.actionOnChoosingAnOptionFromMenu(1);
+
+            verify(bookShelf, times(1)).displayListOfBooks();
+        }
     }
 
 }

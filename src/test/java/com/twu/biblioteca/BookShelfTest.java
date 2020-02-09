@@ -22,7 +22,7 @@ class BookShelfTest {
         BookShelf bookShelf = new BookShelf();
         String expected = "1. " + ADUMMYBOOK.NAME + " | " + ADUMMYBOOK.AUTHOR + " | " + ADUMMYBOOK.YEAROFPUBLICATION + "\n" + "2. " + ADUMMYBOOK.NAME + " | " + ADUMMYBOOK.AUTHOR + " | " + ADUMMYBOOK.YEAROFPUBLICATION + "\n";
 
-        bookShelf.displayListOfNames();
+        bookShelf.displayListOfBooks();
 
         assertEquals(expected, outContent.toString());
     }

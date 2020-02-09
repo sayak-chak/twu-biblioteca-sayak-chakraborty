@@ -11,7 +11,7 @@ public class BookShelf {
         books = new ArrayList<>(Arrays.asList(new Book(ADUMMYBOOK.NAME, ADUMMYBOOK.AUTHOR, ADUMMYBOOK.YEAROFPUBLICATION), new Book(ADUMMYBOOK.NAME, ADUMMYBOOK.AUTHOR, ADUMMYBOOK.YEAROFPUBLICATION)));
     }
 
-    public void displayListOfNames() {
+    public void displayListOfBooks() {
         int serialNumber = 1;
         for (Book book : books) {
             System.out.println(serialNumber++ + ". " + book.getNameAuthorAndYearOfPublication());
