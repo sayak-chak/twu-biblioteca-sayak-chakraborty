@@ -8,10 +8,12 @@ import java.util.List;
 public class BookShelf {
     public List<Book> booksInLibraryNow;
     private List<Book> checkedOutBooks;
+    private SystemMessage systemMessage;
 
     BookShelf() {
         booksInLibraryNow = new ArrayList<>(Arrays.asList(new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION), new Book(DUMMYBOOKS.BOOKTWONAME, DUMMYBOOKS.BOOKTWOAUTHOR, DUMMYBOOKS.BOOKTWOYEAROFPUBLICATION)));
         checkedOutBooks = new ArrayList<>();
+        systemMessage = new SystemMessage();
     }
 
     public void displayListOfBooks() {
@@ -29,12 +31,12 @@ public class BookShelf {
             book = bookIterator.next();
             if (book.getName().equals(bookName)) {
                 bookIterator.remove();
-                System.out.println(MESSAGE.SUCCESSFULCHECKOUT);
+                systemMessage.successfulCheckout();
                 checkedOutBooks.add(book);
                 return;
             }
         }
-        System.out.println(MESSAGE.CHECKOUTFAIL);
+        systemMessage.checkoutFail();
     }
 
     public void returnBook(String bookName) {
@@ -42,8 +44,8 @@ public class BookShelf {
             Book book = bookToBeReturned(bookName);
             checkedOutBooks.remove(book);
             booksInLibraryNow.add(book);
-            System.out.println(MESSAGE.SUCCESSFULRETURN);
-        } else System.out.println(MESSAGE.RETURNFAIL);
+            systemMessage.successfulReturn();
+        } else systemMessage.returnFail();
     }
 
     private Book bookToBeReturned(String bookName) {
