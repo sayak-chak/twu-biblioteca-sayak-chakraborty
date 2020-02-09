@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class BookShelf {
@@ -20,8 +21,17 @@ public class BookShelf {
 
 
     public void checkout(String bookName) {
-        books.remove(books.get(1));
-        System.out.println(MESSAGE.SUCCESSFULCHECKOUT);
+        Book book;
+        Iterator<Book> bookIterator = books.iterator();
+        while (bookIterator.hasNext()) {
+            book = bookIterator.next();
+            if (book.getName().equals(bookName)) {
+                bookIterator.remove();
+                System.out.println(MESSAGE.SUCCESSFULCHECKOUT);
+                return;
+            }
+        }
+        System.out.println(MESSAGE.CHECKOUTFAIL);
     }
 
 }

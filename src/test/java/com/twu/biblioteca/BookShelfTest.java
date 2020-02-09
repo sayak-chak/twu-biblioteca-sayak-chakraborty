@@ -40,11 +40,21 @@ class BookShelfTest {
     }
 
     @Test
-    public void testShouldDisplaySuccessMessageOnCheckoutOfABook() {
+    public void testShouldDisplaySuccessMessageOnSuccessfulCheckoutOfABook() {
         BookShelf bookShelf = new BookShelf();
         String expected = MESSAGE.SUCCESSFULCHECKOUT + "\n";
 
         bookShelf.checkout(DUMMYBOOKS.BOOKTWONAME);
+
+        assertEquals(expected, outContent.toString());
+    }
+
+    @Test
+    public void testShouldDisplayFailureMessageOnUnsuccessfulCheckoutOfABook() {
+        BookShelf bookShelf = new BookShelf();
+        String expected = MESSAGE.CHECKOUTFAIL + "\n";
+
+        bookShelf.checkout("Invalid book");
 
         assertEquals(expected, outContent.toString());
     }
