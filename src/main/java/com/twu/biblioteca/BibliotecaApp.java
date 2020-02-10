@@ -4,13 +4,11 @@ import java.io.IOException;
 
 public class BibliotecaApp {
     private BookShelf bookShelf;
-    private InputOutputStream inputOutputStream;
     private AppInteraction appInteraction;
 
     public BibliotecaApp(BookShelf bookShelf, InputOutputStream inputOutputStream) {
         this.bookShelf = bookShelf;
         appInteraction = new AppInteraction(inputOutputStream); //TODO: dependency
-        this.inputOutputStream = inputOutputStream;
     }
 
     public void displayMenu() {
@@ -20,7 +18,7 @@ public class BibliotecaApp {
     @SuppressWarnings("InfiniteLoopStatement")
     public void chooseMenuOption() throws IOException, QuittingPlaceholderException {
         while (true)
-            actionOnChoosingAnOptionFromMenu(Integer.parseInt(readInput()));
+            actionOnChoosingAnOptionFromMenu(Integer.parseInt(appInteraction.readInput()));
     }
 
     private void actionOnChoosingAnOptionFromMenu(int choice) throws IOException, QuittingPlaceholderException {
@@ -30,11 +28,11 @@ public class BibliotecaApp {
                 bookShelf.displayList();
                 break;
             case 2: //Checkout
-                inputBook = readInput();
+                inputBook = appInteraction.readInput();
                 bookShelf.checkout(inputBook);
                 break;
             case 3://Return
-                inputBook = readInput();
+                inputBook = appInteraction.readInput();
                 bookShelf.returnBook(inputBook);
                 break;
             case 4: //Quit
@@ -44,8 +42,5 @@ public class BibliotecaApp {
         }
     }
 
-    private String readInput() throws IOException {
-        return inputOutputStream.input();
-    }
 
 }
