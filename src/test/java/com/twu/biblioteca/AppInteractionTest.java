@@ -16,13 +16,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class AppInteractionTest {
     private ByteArrayOutputStream outContent;
     private AppInteraction appInteraction;
-    private InputOutputStream inputOutputStream;
 
     @BeforeEach
     public void initializeOutputStreams() {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        inputOutputStream = new InputOutputStream();
+        InputOutputStream inputOutputStream = new InputOutputStream();
         // After this all System.out.println() statements will come to outContent stream.
         // So, you can normally call
         appInteraction = new AppInteraction(inputOutputStream);
