@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +14,9 @@ import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AppInteractionTest {
-    ByteArrayOutputStream outContent;
-    AppInteraction appInteraction;
-    InputOutputStream inputOutputStream;
+    private ByteArrayOutputStream outContent;
+    private AppInteraction appInteraction;
+    private InputOutputStream inputOutputStream;
 
     @BeforeEach
     public void initializeOutputStreams() {
@@ -25,6 +26,13 @@ class AppInteractionTest {
         // After this all System.out.println() statements will come to outContent stream.
         // So, you can normally call
         appInteraction = new AppInteraction(inputOutputStream);
+    }
+
+    @AfterEach
+    public void clear() {
+        outContent = null;
+        System.out.close();
+        appInteraction = null;
     }
 
     @Test
