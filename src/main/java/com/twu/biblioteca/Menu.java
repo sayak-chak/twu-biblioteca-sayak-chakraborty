@@ -9,12 +9,7 @@ public final class Menu {
     private static List<String> menuOptions = asList(menuOptionOne, menuOptionTwo, menuOptionThree, menuOptionFour);
 
     public static void display() {
-        StringBuilder menu = new StringBuilder(Message.instruction + "\n");
-        int serialNumber = 1;
-        for (String menuOption : menuOptions) {
-            menu.append(serialNumber++).append(". ").append(menuOption).append("\n");
-        }
-        new InputOutputStream().output(menu.toString().trim());
+        new AppInteraction(new InputOutputStream()).printList(menuOptions);
     }
 
 }
