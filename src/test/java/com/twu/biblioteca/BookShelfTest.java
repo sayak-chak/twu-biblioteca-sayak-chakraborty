@@ -12,16 +12,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BookShelfTest {
     ByteArrayOutputStream outContent;
+    BookShelf bookShelf;
 
     @BeforeEach
     public void initializeOutputStreams() {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
+        bookShelf = new BookShelf(new InputOutputStream());
     }
 
     @Test
     public void testShouldDisplayListOfBooksWhenShelfHasMultipleBooks() {
-        BookShelf bookShelf = new BookShelf();
         String expected = EXPECTEDTESTOUTPUTS.bookList;
         bookShelf.displayListOfBooks();
 
@@ -30,8 +31,6 @@ class BookShelfTest {
 
     @Test
     public void testShouldCheckoutABookThatIsInBookList() {
-        BookShelf bookShelf = new BookShelf();
-
         bookShelf.checkout(DummyBooks.bookTwoName);
 
         assertEquals(Collections.singletonList(new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication)), bookShelf.getBooksInLibraryNow());
@@ -39,7 +38,6 @@ class BookShelfTest {
 
     @Test
     public void testShouldDisplaySuccessMessageOnSuccessfulCheckoutOfABook() {
-        BookShelf bookShelf = new BookShelf();
         String expected = Message.successfulCheckOut + "\n";
 
         bookShelf.checkout(DummyBooks.bookTwoName);
@@ -49,7 +47,6 @@ class BookShelfTest {
 
     @Test
     public void testShouldDisplayFailureMessageOnUnsuccessfulCheckoutOfABook() {
-        BookShelf bookShelf = new BookShelf();
         String expected = Message.checkOutFail + "\n";
 
         bookShelf.checkout("Invalid book");
@@ -59,8 +56,6 @@ class BookShelfTest {
 
     @Test
     public void testShouldReturnABook() {
-        BookShelf bookShelf = new BookShelf();
-
         bookShelf.checkout(DummyBooks.bookTwoName);
         bookShelf.returnBook(DummyBooks.bookTwoName);
 
@@ -69,7 +64,6 @@ class BookShelfTest {
 
     @Test
     public void testShouldNotifyOnSuccessfullyReturningABook() {
-        BookShelf bookShelf = new BookShelf();
         String expected = Message.successfulReturn + "\n";
         bookShelf.checkout(DummyBooks.bookTwoName);
         outContent = new ByteArrayOutputStream();
@@ -82,7 +76,6 @@ class BookShelfTest {
 
     @Test
     public void testShouldNotifyOnFailureToReturnABook() {
-        BookShelf bookShelf = new BookShelf();
         String expected = Message.returnFail + "\n";
         bookShelf.checkout(DummyBooks.bookTwoName);
         outContent = new ByteArrayOutputStream();

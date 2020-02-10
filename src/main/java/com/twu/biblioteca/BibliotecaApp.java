@@ -4,13 +4,13 @@ import java.io.IOException;
 
 public class BibliotecaApp {
     BookShelf bookShelf;
-    private InputStream inputStream;
+    private InputOutputStream inputOutputStream;
     private SystemMessage systemMessage;
 
-    BibliotecaApp(BookShelf bookShelf, InputStream inputStream) {
+    BibliotecaApp(BookShelf bookShelf, InputOutputStream inputOutputStream) {
         this.bookShelf = bookShelf;
         systemMessage = new SystemMessage();
-        this.inputStream = inputStream;
+        this.inputOutputStream = inputOutputStream;
     }
 
     public void displayMenu() {
@@ -39,7 +39,7 @@ public class BibliotecaApp {
     }
 
     private String readInput() throws IOException {
-        return inputStream.input();
+        return inputOutputStream.input();
     }
 
     @SuppressWarnings("InfiniteLoopStatement")

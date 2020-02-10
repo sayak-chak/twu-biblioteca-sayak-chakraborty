@@ -9,11 +9,13 @@ public class BookShelf {
     private List<Book> booksInLibraryNow;
     private List<Book> checkedOutBooks;
     private SystemMessage systemMessage;
+    InputOutputStream inputOutputStream;
 
-    BookShelf() {
+    BookShelf(InputOutputStream inputOutputStream) {
         booksInLibraryNow = new ArrayList<>(Arrays.asList(new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication), new Book(DummyBooks.bookTwoName, DummyBooks.bookTwoAuthor, DummyBooks.bookTwoYearOfPublication)));
         checkedOutBooks = new ArrayList<>();
         systemMessage = new SystemMessage();
+        this.inputOutputStream = inputOutputStream;
     }
 
     public void displayListOfBooks() {
@@ -22,7 +24,7 @@ public class BookShelf {
         for (Book book : booksInLibraryNow) {
             bookList.append(serialNumber++).append(". ").append(book.getNameAuthorAndYearOfPublication()).append("\n");
         }
-        System.out.println(bookList.toString().trim());
+        inputOutputStream.output(bookList.toString().trim());
     }
 
 

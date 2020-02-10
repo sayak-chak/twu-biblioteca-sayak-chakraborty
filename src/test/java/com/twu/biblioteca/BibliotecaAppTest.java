@@ -19,20 +19,20 @@ class BibliotecaAppTest {
     @DisplayName("Menu Test")
     class MenuTest {
         ByteArrayOutputStream out;
-        InputStream inputStream;
+        InputOutputStream inputOutputStream;
 
         @BeforeEach
         public void initializeOutputStream() {
             out = new ByteArrayOutputStream();
             System.setOut(new PrintStream(out));
-            inputStream = mock(InputStream.class);
+            inputOutputStream = mock(InputOutputStream.class);
         }
 
 
         @Test
         public void testShouldDisplayTheMenu() {
             BookShelf bookShelf = mock(BookShelf.class);
-            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
+            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputOutputStream);
             String expectedMenu = EXPECTEDTESTOUTPUTS.menu + "\n";
             bibliotecaApp.displayMenu();
 
@@ -42,8 +42,8 @@ class BibliotecaAppTest {
         @Test
         public void testShouldDisplayTheListOfBooksAfterChoosingDisplayBooksOption() throws IOException {
             BookShelf bookShelf = mock(BookShelf.class);
-            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
-            when(inputStream.input()).thenReturn("1", "4");
+            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputOutputStream);
+            when(inputOutputStream.input()).thenReturn("1", "4");
             try {
 
                 bibliotecaApp.chooseMenuOption();
@@ -57,8 +57,8 @@ class BibliotecaAppTest {
         @Test
         public void testShouldNotifyOnChoosingAnInvalidOption() throws IOException {
             BookShelf bookShelf = mock(BookShelf.class);
-            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
-            when(inputStream.input()).thenReturn("-1", "4");
+            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputOutputStream);
+            when(inputOutputStream.input()).thenReturn("-1", "4");
             String expectedNotification = Message.invalidOption + "\n";
             try {
 
@@ -73,8 +73,8 @@ class BibliotecaAppTest {
         @Test
         public void testShouldCheckoutABookOnChoosingCheckoutOption() throws IOException {
             BookShelf bookShelf = mock(BookShelf.class);
-            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
-            when(inputStream.input()).thenReturn("2", InvalidBook.name, "4");
+            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputOutputStream);
+            when(inputOutputStream.input()).thenReturn("2", InvalidBook.name, "4");
 
             try {
                 bibliotecaApp.chooseMenuOption();
@@ -88,8 +88,8 @@ class BibliotecaAppTest {
         @Test
         public void testShouldReturnABookOnChoosingCheckoutOption() throws IOException {
             BookShelf bookShelf = mock(BookShelf.class);
-            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
-            when(inputStream.input()).thenReturn("2", InvalidBook.name, "4");
+            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputOutputStream);
+            when(inputOutputStream.input()).thenReturn("2", InvalidBook.name, "4");
 
             try {
                 bibliotecaApp.chooseMenuOption();
@@ -103,8 +103,8 @@ class BibliotecaAppTest {
         @Test
         public void testShouldQuitOnlyWhenOptionToQuitIsChosen() throws IOException {
             BookShelf bookShelf = mock(BookShelf.class);
-            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
-            when(inputStream.input()).thenReturn("2", InvalidBook.name, "4");
+            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputOutputStream);
+            when(inputOutputStream.input()).thenReturn("2", InvalidBook.name, "4");
 
             try {
                 bibliotecaApp.chooseMenuOption();
