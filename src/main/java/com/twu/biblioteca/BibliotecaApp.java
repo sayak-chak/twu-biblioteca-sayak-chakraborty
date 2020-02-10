@@ -17,7 +17,7 @@ public class BibliotecaApp {
         Menu.display();
     }
 
-    public void actionOnChoosingAnOptionFromMenu(int choice) throws IOException {
+    private void actionOnChoosingAnOptionFromMenu(int choice) throws IOException {
         String inputBook;
         switch (choice) {
             case 1: //List of books
@@ -44,4 +44,8 @@ public class BibliotecaApp {
         return in.readLine();
     }
 
+
+    public void chooseMenuOption() throws IOException {
+        actionOnChoosingAnOptionFromMenu(Integer.parseInt(readInput()));
+    }
 }
