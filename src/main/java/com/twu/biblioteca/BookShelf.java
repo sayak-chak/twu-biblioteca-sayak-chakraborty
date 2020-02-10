@@ -42,26 +42,20 @@ public class BookShelf {
     }
 
     public void returnBook(String bookName) {
-        if (thisBookIsInCheckedOutBooks(bookName)) {
-            Book book = bookToBeReturned(bookName);
-            checkedOutBooks.remove(book);
-            booksInLibraryNow.add(book);
-            systemMessage.successfulReturn();
+        Book bookToBeReturned = bookToBeReturned(bookName);
+
+        if (bookToBeReturned == null) {
+            systemMessage.returnFail();
             return;
         }
-        systemMessage.returnFail();
+        checkedOutBooks.remove(bookToBeReturned);
+        booksInLibraryNow.add(bookToBeReturned);
+        systemMessage.successfulReturn();
     }
 
     private Book bookToBeReturned(String bookName) {
         for (Book book : checkedOutBooks) if (book.getName().equals(bookName)) return book;
-        return null; //DEAD CODE
-    }
-
-    private boolean thisBookIsInCheckedOutBooks(String bookName) {
-        for (Book book : checkedOutBooks) {
-            if (book.getName().equals(bookName)) return true;
-        }
-        return false;
+        return null; //OR EXCEPTION?
     }
 
     public List<Book> getBooksInLibraryNow() {
