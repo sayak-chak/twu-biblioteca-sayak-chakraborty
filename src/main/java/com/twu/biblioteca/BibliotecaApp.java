@@ -3,8 +3,8 @@ package com.twu.biblioteca;
 import java.io.IOException;
 
 public class BibliotecaApp {
-    private InputStream inputStream;
     BookShelf bookShelf;
+    private InputStream inputStream;
     private SystemMessage systemMessage;
 
     BibliotecaApp(BookShelf bookShelf, InputStream inputStream) {
@@ -17,7 +17,7 @@ public class BibliotecaApp {
         Menu.display();
     }
 
-    private void actionOnChoosingAnOptionFromMenu(int choice) throws IOException {
+    private void actionOnChoosingAnOptionFromMenu(int choice) throws IOException, QuittingPlaceholderException {
         String inputBook;
         switch (choice) {
             case 1: //List of books
@@ -32,8 +32,7 @@ public class BibliotecaApp {
                 bookShelf.returnBook(inputBook);
                 break;
             case 4: //Quit
-                System.exit(0);
-                break;
+                throw new QuittingPlaceholderException();//System.exit(0);
             default:
                 systemMessage.invalidOption();
         }
@@ -43,8 +42,9 @@ public class BibliotecaApp {
         return inputStream.input();
     }
 
-
-    public void chooseMenuOption() throws IOException {
-        actionOnChoosingAnOptionFromMenu(Integer.parseInt(readInput()));
+    @SuppressWarnings("InfiniteLoopStatement")
+    public void chooseMenuOption() throws IOException, QuittingPlaceholderException {
+        while (true)
+            actionOnChoosingAnOptionFromMenu(Integer.parseInt(readInput()));
     }
 }

@@ -53,13 +53,14 @@ public class BookShelf {
         systemMessage.successfulReturn();
     }
 
+    public List<Book> getBooksInLibraryNow() {
+        return booksInLibraryNow;
+    }
+
     private Book bookToBeReturned(String bookName) {
         for (Book book : checkedOutBooks) if (book.getName().equals(bookName)) return book;
         return null; //OR EXCEPTION?
     }
 
-    public List<Book> getBooksInLibraryNow() {
-        return booksInLibraryNow;
-    }
 }
 

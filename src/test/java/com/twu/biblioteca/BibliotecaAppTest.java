@@ -28,12 +28,12 @@ class BibliotecaAppTest {
             inputStream = mock(InputStream.class);
         }
 
+
         @Test
         public void testShouldDisplayTheMenu() {
             BookShelf bookShelf = mock(BookShelf.class);
             BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
             String expectedMenu = EXPECTEDTESTOUTPUTS.menu + "\n";
-
             bibliotecaApp.displayMenu();
 
             assertEquals(expectedMenu, out.toString());
@@ -44,10 +44,14 @@ class BibliotecaAppTest {
             BookShelf bookShelf = mock(BookShelf.class);
             BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
             when(inputStream.input()).thenReturn("1", "4");
+            try {
 
-            bibliotecaApp.chooseMenuOption();
+                bibliotecaApp.chooseMenuOption();
 
-            verify(bookShelf, times(1)).displayListOfBooks();
+                verify(bookShelf, times(1)).displayListOfBooks();
+            } catch (QuittingPlaceholderException exception) {
+                //Has Quit
+            }
         }
 
         @Test
@@ -56,10 +60,14 @@ class BibliotecaAppTest {
             BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
             when(inputStream.input()).thenReturn("-1", "4");
             String expectedNotification = Message.invalidOption + "\n";
+            try {
 
-            bibliotecaApp.chooseMenuOption();
+                bibliotecaApp.chooseMenuOption();
 
-            assertEquals(expectedNotification, out.toString());
+                assertEquals(expectedNotification, out.toString());
+            } catch (QuittingPlaceholderException exception) {
+                //Has Quit
+            }
         }
 
         @Test
@@ -68,9 +76,13 @@ class BibliotecaAppTest {
             BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
             when(inputStream.input()).thenReturn("2", InvalidBook.name, "4");
 
-            bibliotecaApp.chooseMenuOption();
+            try {
+                bibliotecaApp.chooseMenuOption();
 
-            verify(bookShelf, times(1)).checkout(InvalidBook.name);
+                verify(bookShelf, times(1)).checkout(InvalidBook.name);
+            } catch (QuittingPlaceholderException exception) {
+                //Has Quit
+            }
         }
 
         @Test
@@ -79,9 +91,28 @@ class BibliotecaAppTest {
             BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
             when(inputStream.input()).thenReturn("2", InvalidBook.name, "4");
 
-            bibliotecaApp.chooseMenuOption();
+            try {
+                bibliotecaApp.chooseMenuOption();
 
-            verify(bookShelf, times(1)).checkout(InvalidBook.name);
+                verify(bookShelf, times(1)).checkout(InvalidBook.name);
+            } catch (QuittingPlaceholderException exception) {
+                //Has Quit
+            }
+        }
+
+        @Test
+        public void testShouldQuitOnlyWhenOptionToQuitIsChosen() throws IOException {
+            BookShelf bookShelf = mock(BookShelf.class);
+            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
+            when(inputStream.input()).thenReturn("2", InvalidBook.name, "4");
+
+            try {
+                bibliotecaApp.chooseMenuOption();
+
+                verify(bookShelf, times(1)).checkout(InvalidBook.name);
+            } catch (QuittingPlaceholderException exception) {
+                //Has Quit
+            }
         }
 
     }
