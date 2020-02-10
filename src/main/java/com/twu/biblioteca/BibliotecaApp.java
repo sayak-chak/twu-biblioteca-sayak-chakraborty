@@ -17,6 +17,12 @@ public class BibliotecaApp {
         Menu.display();
     }
 
+    @SuppressWarnings("InfiniteLoopStatement")
+    public void chooseMenuOption() throws IOException, QuittingPlaceholderException {
+        while (true)
+            actionOnChoosingAnOptionFromMenu(Integer.parseInt(readInput()));
+    }
+
     private void actionOnChoosingAnOptionFromMenu(int choice) throws IOException, QuittingPlaceholderException {
         String inputBook;
         switch (choice) { // TODO: switch case
@@ -42,9 +48,4 @@ public class BibliotecaApp {
         return inputOutputStream.input();
     }
 
-    @SuppressWarnings("InfiniteLoopStatement")
-    public void chooseMenuOption() throws IOException, QuittingPlaceholderException {
-        while (true)
-            actionOnChoosingAnOptionFromMenu(Integer.parseInt(readInput()));
-    }
 }
