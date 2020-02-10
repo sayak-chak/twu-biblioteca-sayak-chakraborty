@@ -75,4 +75,13 @@ class SystemMessageTest {
 
         assertEquals(expectedOutput, outContent.toString());
     }
+
+    @Test
+    public void testShouldDisplayTheMenu() {
+        systemMessage.menu();
+
+        String expectedOutput = MESSAGE.MENU + "\n";
+
+        assertEquals(expectedOutput, outContent.toString());
+    }
 }

@@ -1,6 +1,9 @@
 package com.twu.biblioteca;
 
+import java.util.List;
+
 public class SystemMessage {
+
 
     public void welcome() {
         System.out.println(MESSAGE.WELCOME);
@@ -24,5 +27,15 @@ public class SystemMessage {
 
     public void successfulCheckout() {
         System.out.println(MESSAGE.SUCCESSFULCHECKOUT);
+    }
+
+    public void menu() {
+        StringBuilder menu = new StringBuilder();
+        List<String> menuList = MENU.MENUOPTIONS.getMenu();
+        int serialNumber = 1;
+        for (String menuOption : menuList) {
+            menu.append(serialNumber++).append(". ").append(menuOption).append("\n");
+        }
+        System.out.println(menu.toString().trim());
     }
 }

@@ -10,7 +10,7 @@ public class BibliotecaApp {
     }
 
     public void displayMenu() {
-        System.out.println(MESSAGE.MENU);
+        systemMessage.menu();
     }
 
     public void actionOnChoosingAnOptionFromMenu(int choice) {
