@@ -22,7 +22,7 @@ class BookShelfTest {
     @Test
     public void testShouldDisplayListOfBooksWhenShelfHasMultipleBooks() {
         BookShelf bookShelf = new BookShelf();
-        String expected = DUMMYBOOKS.bookList;
+        String expected = EXPECTEDTESTOUTPUTS.bookList;
         bookShelf.displayListOfBooks();
 
         assertEquals(expected, outContent.toString());
