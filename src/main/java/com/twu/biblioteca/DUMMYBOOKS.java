@@ -2,9 +2,9 @@ package com.twu.biblioteca;
 
 public enum DUMMYBOOKS {
     ;
-    static final String BOOKONENAME = "Dummy Book One", BOOKONEAUTHOR = "Dummy Author One";
-    static final int BOOKONEYEAROFPUBLICATION = 2000;
-    static final String BOOKTWONAME = "Dummy Book Two", BOOKTWOAUTHOR = "Dummy Author Two";
-    static final int BOOKTWOYEAROFPUBLICATION = 2000;
-    static final String BOOKLIST = "1. " + DUMMYBOOKS.BOOKONENAME + " | " + DUMMYBOOKS.BOOKONEAUTHOR + " | " + DUMMYBOOKS.BOOKONEYEAROFPUBLICATION + "\n" + "2. " + DUMMYBOOKS.BOOKTWONAME + " | " + DUMMYBOOKS.BOOKTWOAUTHOR + " | " + DUMMYBOOKS.BOOKTWOYEAROFPUBLICATION + "\n";
+    static final String bookOneName = "Dummy Book One", bookOneAuthor = "Dummy Author One";
+    static final int bookOneYearOfPublication = 2000;
+    static final String bookTwoName = "Dummy Book Two", bookTwoAuthor = "Dummy Author Two";
+    static final int bookTwoYearOfPublication = 2000;
+    static final String bookList = "1. " + DUMMYBOOKS.bookOneName + " | " + DUMMYBOOKS.bookOneAuthor + " | " + DUMMYBOOKS.bookOneYearOfPublication + "\n" + "2. " + DUMMYBOOKS.bookTwoName + " | " + DUMMYBOOKS.bookTwoAuthor + " | " + DUMMYBOOKS.bookTwoYearOfPublication + "\n";
 }

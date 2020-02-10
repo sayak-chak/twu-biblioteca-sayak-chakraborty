@@ -25,7 +25,7 @@ class SystemMessageTest {
     public void testShouldDisplayTheCorrectWelcomeMessage() {
         systemMessage.welcome();
         //Now you have to validate the output
-        String expectedOutput = MESSAGE.WELCOME + "\n"; // Notice the \n for new line.
+        String expectedOutput = MESSAGE.welcome + "\n"; // Notice the \n for new line.
 
         // Do the actual assertion.
         assertEquals(expectedOutput, outContent.toString());
@@ -35,7 +35,7 @@ class SystemMessageTest {
     public void testShouldDisplaySuccessfulCheckoutMessage() {
         systemMessage.successfulCheckout();
 
-        String expectedOutput = MESSAGE.SUCCESSFULCHECKOUT + "\n";
+        String expectedOutput = MESSAGE.successfulCheckOut + "\n";
 
         assertEquals(expectedOutput, outContent.toString());
     }
@@ -44,7 +44,7 @@ class SystemMessageTest {
     public void testShouldDisplayCheckoutFailMessage() {
         systemMessage.checkoutFail();
 
-        String expectedOutput = MESSAGE.CHECKOUTFAIL + "\n";
+        String expectedOutput = MESSAGE.checkOutFail + "\n";
 
         assertEquals(expectedOutput, outContent.toString());
     }
@@ -53,7 +53,7 @@ class SystemMessageTest {
     public void testShouldDisplaySuccessfulReturnMessage() {
         systemMessage.successfulReturn();
 
-        String expectedOutput = MESSAGE.SUCCESSFULRETURN + "\n";
+        String expectedOutput = MESSAGE.successfulReturn + "\n";
 
         assertEquals(expectedOutput, outContent.toString());
     }
@@ -62,7 +62,7 @@ class SystemMessageTest {
     public void testShouldDisplayReturnFailMessage() {
         systemMessage.returnFail();
 
-        String expectedOutput = MESSAGE.RETURNFAIL + "\n";
+        String expectedOutput = MESSAGE.returnFail + "\n";
 
         assertEquals(expectedOutput, outContent.toString());
     }
@@ -71,7 +71,7 @@ class SystemMessageTest {
     public void testShouldDisplayInvalidOptionMessage() {
         systemMessage.invalidOption();
 
-        String expectedOutput = MESSAGE.INVALIDOPTION + "\n";
+        String expectedOutput = MESSAGE.invalidOption + "\n";
 
         assertEquals(expectedOutput, outContent.toString());
     }
@@ -80,7 +80,7 @@ class SystemMessageTest {
     public void testShouldDisplayTheMenu() {
         systemMessage.menu();
 
-        String expectedOutput = MESSAGE.MENU + "\n";
+        String expectedOutput = MESSAGE.menu + "\n";
 
         assertEquals(expectedOutput, outContent.toString());
     }

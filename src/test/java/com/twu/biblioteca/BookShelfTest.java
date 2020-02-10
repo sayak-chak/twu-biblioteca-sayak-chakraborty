@@ -22,7 +22,7 @@ class BookShelfTest {
     @Test
     public void testShouldDisplayListOfBooksWhenShelfHasMultipleBooks() {
         BookShelf bookShelf = new BookShelf();
-        String expected = DUMMYBOOKS.BOOKLIST;
+        String expected = DUMMYBOOKS.bookList;
         bookShelf.displayListOfBooks();
 
         assertEquals(expected, outContent.toString());
@@ -32,17 +32,17 @@ class BookShelfTest {
     public void testShouldCheckoutABookThatIsInBookList() {
         BookShelf bookShelf = new BookShelf();
 
-        bookShelf.checkout(DUMMYBOOKS.BOOKTWONAME);
+        bookShelf.checkout(DUMMYBOOKS.bookTwoName);
 
-        assertEquals(Collections.singletonList(new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION)), bookShelf.booksInLibraryNow);
+        assertEquals(Collections.singletonList(new Book(DUMMYBOOKS.bookOneName, DUMMYBOOKS.bookOneAuthor, DUMMYBOOKS.bookOneYearOfPublication)), bookShelf.booksInLibraryNow);
     }
 
     @Test
     public void testShouldDisplaySuccessMessageOnSuccessfulCheckoutOfABook() {
         BookShelf bookShelf = new BookShelf();
-        String expected = MESSAGE.SUCCESSFULCHECKOUT + "\n";
+        String expected = MESSAGE.successfulCheckOut + "\n";
 
-        bookShelf.checkout(DUMMYBOOKS.BOOKTWONAME);
+        bookShelf.checkout(DUMMYBOOKS.bookTwoName);
 
         assertEquals(expected, outContent.toString());
     }
@@ -50,7 +50,7 @@ class BookShelfTest {
     @Test
     public void testShouldDisplayFailureMessageOnUnsuccessfulCheckoutOfABook() {
         BookShelf bookShelf = new BookShelf();
-        String expected = MESSAGE.CHECKOUTFAIL + "\n";
+        String expected = MESSAGE.checkOutFail + "\n";
 
         bookShelf.checkout("Invalid book");
 
@@ -61,21 +61,21 @@ class BookShelfTest {
     public void testShouldReturnABook() {
         BookShelf bookShelf = new BookShelf();
 
-        bookShelf.checkout(DUMMYBOOKS.BOOKTWONAME);
-        bookShelf.returnBook(DUMMYBOOKS.BOOKTWONAME);
+        bookShelf.checkout(DUMMYBOOKS.bookTwoName);
+        bookShelf.returnBook(DUMMYBOOKS.bookTwoName);
 
-        assertEquals(Arrays.asList(new Book(DUMMYBOOKS.BOOKONENAME, DUMMYBOOKS.BOOKONEAUTHOR, DUMMYBOOKS.BOOKONEYEAROFPUBLICATION), new Book(DUMMYBOOKS.BOOKTWONAME, DUMMYBOOKS.BOOKTWOAUTHOR, DUMMYBOOKS.BOOKTWOYEAROFPUBLICATION)), bookShelf.booksInLibraryNow);
+        assertEquals(Arrays.asList(new Book(DUMMYBOOKS.bookOneName, DUMMYBOOKS.bookOneAuthor, DUMMYBOOKS.bookOneYearOfPublication), new Book(DUMMYBOOKS.bookTwoName, DUMMYBOOKS.bookTwoAuthor, DUMMYBOOKS.bookTwoYearOfPublication)), bookShelf.booksInLibraryNow);
     }
 
     @Test
     public void testShouldNotifyOnSuccessfullyReturningABook() {
         BookShelf bookShelf = new BookShelf();
-        String expected = MESSAGE.SUCCESSFULRETURN + "\n";
-        bookShelf.checkout(DUMMYBOOKS.BOOKTWONAME);
+        String expected = MESSAGE.successfulReturn + "\n";
+        bookShelf.checkout(DUMMYBOOKS.bookTwoName);
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
-        bookShelf.returnBook(DUMMYBOOKS.BOOKTWONAME);
+        bookShelf.returnBook(DUMMYBOOKS.bookTwoName);
 
         assertEquals(expected, outContent.toString());
     }
@@ -83,8 +83,8 @@ class BookShelfTest {
     @Test
     public void testShouldNotifyOnFailureToReturnABook() {
         BookShelf bookShelf = new BookShelf();
-        String expected = MESSAGE.RETURNFAIL + "\n";
-        bookShelf.checkout(DUMMYBOOKS.BOOKTWONAME);
+        String expected = MESSAGE.returnFail + "\n";
+        bookShelf.checkout(DUMMYBOOKS.bookTwoName);
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 

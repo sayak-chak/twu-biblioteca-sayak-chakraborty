@@ -29,7 +29,7 @@ class BibliotecaAppTest {
         public void testShouldDisplayTheMenu() {
             BookShelf bookShelf = mock(BookShelf.class);
             BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
-            String expectedMenu = MESSAGE.MENU + "\n";
+            String expectedMenu = MESSAGE.menu + "\n";
 
             bibliotecaApp.displayMenu();
 
@@ -50,7 +50,7 @@ class BibliotecaAppTest {
         public void testShouldNotifyOnChoosingAnInvalidOption() {
             BookShelf bookShelf = mock(BookShelf.class);
             BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
-            String expectedNotification = MESSAGE.INVALIDOPTION + "\n";
+            String expectedNotification = MESSAGE.invalidOption + "\n";
 
             bibliotecaApp.actionOnChoosingAnOptionFromMenu(0);
 
