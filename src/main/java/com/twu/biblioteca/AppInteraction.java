@@ -1,9 +1,9 @@
 package com.twu.biblioteca;
 
-public class SystemMessage {
+public class AppInteraction {
     private InputOutputStream inputOutputStream;
 
-    SystemMessage(InputOutputStream inputOutputStream) {
+    AppInteraction(InputOutputStream inputOutputStream) {
         this.inputOutputStream = inputOutputStream;
     }
 

@@ -5,11 +5,11 @@ import java.io.IOException;
 public class BibliotecaApp {
     private BookShelf bookShelf;
     private InputOutputStream inputOutputStream;
-    private SystemMessage systemMessage;
+    private AppInteraction appInteraction;
 
     public BibliotecaApp(BookShelf bookShelf, InputOutputStream inputOutputStream) {
         this.bookShelf = bookShelf;
-        systemMessage = new SystemMessage(inputOutputStream); //TODO: dependency
+        appInteraction = new AppInteraction(inputOutputStream); //TODO: dependency
         this.inputOutputStream = inputOutputStream;
     }
 
@@ -40,7 +40,7 @@ public class BibliotecaApp {
             case 4: //Quit
                 throw new QuittingPlaceholderException();//System.exit(0);
             default:
-                systemMessage.invalidOption();
+                appInteraction.invalidOption();
         }
     }
 

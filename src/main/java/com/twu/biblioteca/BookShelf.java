@@ -9,13 +9,13 @@ import static java.util.Arrays.asList;
 public class BookShelf {
     private List<Book> booksInLibraryNow;
     private List<Book> checkedOutBooks;
-    private SystemMessage systemMessage;
+    private AppInteraction appInteraction;
     private InputOutputStream inputOutputStream;
 
     public BookShelf(InputOutputStream inputOutputStream) {
         booksInLibraryNow = getDefaultBookList();
         checkedOutBooks = new ArrayList<>();
-        systemMessage = new SystemMessage(inputOutputStream); // TODO: Can be mocked
+        appInteraction = new AppInteraction(inputOutputStream); // TODO: Can be mocked
         this.inputOutputStream = inputOutputStream;
     }
 
@@ -38,24 +38,24 @@ public class BookShelf {
             book = bookIterator.next();
             if (book.getName().equals(bookName)) {
                 bookIterator.remove();
-                systemMessage.successfulCheckout();
+                appInteraction.successfulCheckout();
                 checkedOutBooks.add(book);
                 return;
             }
         }
-        systemMessage.checkoutFail();
+        appInteraction.checkoutFail();
     }
 
     public void returnBook(String bookName) {
         Book bookToBeReturned = bookToBeReturned(bookName);
 
         if (bookToBeReturned == null) {
-            systemMessage.returnFail();
+            appInteraction.returnFail();
             return;
         }
         checkedOutBooks.remove(bookToBeReturned);
         booksInLibraryNow.add(bookToBeReturned);
-        systemMessage.successfulReturn();
+        appInteraction.successfulReturn();
     }
 
     private Book bookToBeReturned(String bookName) { //TODO: Optional => Optional class isn't changing this so unnecessary atm

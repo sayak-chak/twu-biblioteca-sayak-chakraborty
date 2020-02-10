@@ -8,9 +8,9 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SystemMessageTest {
+class AppInteractionTest {
     ByteArrayOutputStream outContent;
-    SystemMessage systemMessage;
+    AppInteraction appInteraction;
     InputOutputStream inputOutputStream;
 
     @BeforeEach
@@ -20,12 +20,12 @@ class SystemMessageTest {
         inputOutputStream = new InputOutputStream();
         // After this all System.out.println() statements will come to outContent stream.
         // So, you can normally call
-        systemMessage = new SystemMessage(inputOutputStream);
+        appInteraction = new AppInteraction(inputOutputStream);
     }
 
     @Test
     public void testShouldDisplayTheCorrectWelcomeMessage() {
-        systemMessage.welcome();
+        appInteraction.welcome();
         //Now you have to validate the output
         String expectedOutput = Message.welcome + "\n"; // Notice the \n for new line.
 
@@ -35,7 +35,7 @@ class SystemMessageTest {
 
     @Test
     public void testShouldDisplaySuccessfulCheckoutMessage() {
-        systemMessage.successfulCheckout();
+        appInteraction.successfulCheckout();
 
         String expectedOutput = Message.successfulCheckOut + "\n";
 
@@ -44,7 +44,7 @@ class SystemMessageTest {
 
     @Test
     public void testShouldDisplayCheckoutFailMessage() {
-        systemMessage.checkoutFail();
+        appInteraction.checkoutFail();
 
         String expectedOutput = Message.checkOutFail + "\n";
 
@@ -53,7 +53,7 @@ class SystemMessageTest {
 
     @Test
     public void testShouldDisplaySuccessfulReturnMessage() {
-        systemMessage.successfulReturn();
+        appInteraction.successfulReturn();
 
         String expectedOutput = Message.successfulReturn + "\n";
 
@@ -62,7 +62,7 @@ class SystemMessageTest {
 
     @Test
     public void testShouldDisplayReturnFailMessage() {
-        systemMessage.returnFail();
+        appInteraction.returnFail();
 
         String expectedOutput = Message.returnFail + "\n";
 
@@ -71,7 +71,7 @@ class SystemMessageTest {
 
     @Test
     public void testShouldDisplayInvalidOptionMessage() {
-        systemMessage.invalidOption();
+        appInteraction.invalidOption();
 
         String expectedOutput = Message.invalidOption + "\n";
 
