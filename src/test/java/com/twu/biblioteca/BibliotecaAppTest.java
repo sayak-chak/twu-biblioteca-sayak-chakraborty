@@ -70,6 +70,18 @@ class BibliotecaAppTest {
 
             verify(bookShelf, times(1)).checkout(invalidBook);
         }
+
+        @Test
+        public void testShouldReturnABookOnChoosingCheckoutOption() throws IOException {
+            BookShelf bookShelf = mock(BookShelf.class);
+            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
+            String invalidBook = InvalidBook.name;
+            System.setIn(new ByteArrayInputStream(invalidBook.getBytes()));
+
+            bibliotecaApp.actionOnChoosingAnOptionFromMenu(3);
+
+            verify(bookShelf, times(1)).returnBook(invalidBook);
+        }
     }
 
 }
