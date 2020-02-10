@@ -45,7 +45,9 @@ public class BookShelf {
             checkedOutBooks.remove(book);
             booksInLibraryNow.add(book);
             systemMessage.successfulReturn();
-        } else systemMessage.returnFail();
+            return;
+        }
+        systemMessage.returnFail();
     }
 
     private Book bookToBeReturned(String bookName) {

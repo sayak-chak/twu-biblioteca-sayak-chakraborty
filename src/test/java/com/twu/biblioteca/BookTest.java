@@ -35,7 +35,6 @@ class BookTest {
 
         System.out.println(book.getNameAuthorAndYearOfPublication());
 
-
         assertEquals(expectedOutput, outContent.toString());
     }
 }
