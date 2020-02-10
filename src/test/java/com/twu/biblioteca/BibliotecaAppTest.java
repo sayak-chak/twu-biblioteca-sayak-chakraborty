@@ -50,7 +50,7 @@ class BibliotecaAppTest {
         public void testShouldNotifyOnChoosingAnInvalidOption() {
             BookShelf bookShelf = mock(BookShelf.class);
             BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
-            String expectedNotification = MESSAGE.invalidOption + "\n";
+            String expectedNotification = Message.invalidOption + "\n";
 
             bibliotecaApp.actionOnChoosingAnOptionFromMenu(0);
 

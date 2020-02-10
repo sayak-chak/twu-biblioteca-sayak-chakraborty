@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
-public enum MESSAGE {
-    ;
+public final class Message {
     static final String returnFail = "That is not a valid book to return.";
     static final String successfulReturn = "Thank you for returning the book";
     static final String checkOutFail = "Sorry, that book is not available";

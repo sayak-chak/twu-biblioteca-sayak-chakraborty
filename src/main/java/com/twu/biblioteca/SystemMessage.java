@@ -6,27 +6,27 @@ public class SystemMessage {
 
 
     public void welcome() {
-        System.out.println(MESSAGE.welcome);
+        System.out.println(Message.welcome);
     }
 
     public void invalidOption() {
-        System.out.println(MESSAGE.invalidOption);
+        System.out.println(Message.invalidOption);
     }
 
     public void returnFail() {
-        System.out.println(MESSAGE.returnFail);
+        System.out.println(Message.returnFail);
     }
 
     public void successfulReturn() {
-        System.out.println(MESSAGE.successfulReturn);
+        System.out.println(Message.successfulReturn);
     }
 
     public void checkoutFail() {
-        System.out.println(MESSAGE.checkOutFail);
+        System.out.println(Message.checkOutFail);
     }
 
     public void successfulCheckout() {
-        System.out.println(MESSAGE.successfulCheckOut);
+        System.out.println(Message.successfulCheckOut);
     }
 
     public void menu() {

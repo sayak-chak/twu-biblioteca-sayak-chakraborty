@@ -40,7 +40,7 @@ class BookShelfTest {
     @Test
     public void testShouldDisplaySuccessMessageOnSuccessfulCheckoutOfABook() {
         BookShelf bookShelf = new BookShelf();
-        String expected = MESSAGE.successfulCheckOut + "\n";
+        String expected = Message.successfulCheckOut + "\n";
 
         bookShelf.checkout(DUMMYBOOKS.bookTwoName);
 
@@ -50,7 +50,7 @@ class BookShelfTest {
     @Test
     public void testShouldDisplayFailureMessageOnUnsuccessfulCheckoutOfABook() {
         BookShelf bookShelf = new BookShelf();
-        String expected = MESSAGE.checkOutFail + "\n";
+        String expected = Message.checkOutFail + "\n";
 
         bookShelf.checkout("Invalid book");
 
@@ -70,7 +70,7 @@ class BookShelfTest {
     @Test
     public void testShouldNotifyOnSuccessfullyReturningABook() {
         BookShelf bookShelf = new BookShelf();
-        String expected = MESSAGE.successfulReturn + "\n";
+        String expected = Message.successfulReturn + "\n";
         bookShelf.checkout(DUMMYBOOKS.bookTwoName);
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
@@ -83,7 +83,7 @@ class BookShelfTest {
     @Test
     public void testShouldNotifyOnFailureToReturnABook() {
         BookShelf bookShelf = new BookShelf();
-        String expected = MESSAGE.returnFail + "\n";
+        String expected = Message.returnFail + "\n";
         bookShelf.checkout(DUMMYBOOKS.bookTwoName);
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
