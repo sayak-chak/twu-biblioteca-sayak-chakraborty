@@ -18,18 +18,17 @@ public class BibliotecaApp {
     }
 
     public void actionOnChoosingAnOptionFromMenu(int choice) throws IOException {
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String inputBook;
         switch (choice) {
             case 1: //List of books
                 bookShelf.displayListOfBooks();
                 break;
             case 2: //Checkout
-                inputBook = in.readLine();
+                inputBook = readInput();
                 bookShelf.checkout(inputBook);
                 break;
             case 3://Return
-                inputBook = in.readLine();
+                inputBook = readInput();
                 bookShelf.returnBook(inputBook);
                 break;
             case 4: //Quit
@@ -38,8 +37,11 @@ public class BibliotecaApp {
             default:
                 systemMessage.invalidOption();
         }
+    }
 
-
+    private String readInput() throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        return in.readLine();
     }
 
 }
