@@ -1,9 +1,6 @@
 package com.twu.biblioteca;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -22,12 +19,18 @@ class BibliotecaAppTest {
         InputOutputStream inputOutputStream;
 
         @BeforeEach
-        public void initializeOutputStream() {
+        public void initialize() {
             out = new ByteArrayOutputStream();
             System.setOut(new PrintStream(out));
             inputOutputStream = mock(InputOutputStream.class);
         }
 
+        @AfterEach
+        public void close() {
+            out = null;
+            System.out.close();
+            inputOutputStream = null;
+        }
 
         @Test
         public void testShouldDisplayTheMenu() {
