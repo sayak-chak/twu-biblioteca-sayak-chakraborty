@@ -18,9 +18,11 @@ public class BookShelf {
 
     public void displayListOfBooks() {
         int serialNumber = 1;
+        StringBuilder bookList = new StringBuilder();
         for (Book book : booksInLibraryNow) {
-            System.out.println(serialNumber++ + ". " + book.getNameAuthorAndYearOfPublication());
+            bookList.append(serialNumber++).append(". ").append(book.getNameAuthorAndYearOfPublication()).append("\n");
         }
+        System.out.println(bookList.toString().trim());
     }
 
 
