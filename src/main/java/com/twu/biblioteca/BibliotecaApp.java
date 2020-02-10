@@ -11,6 +11,15 @@ public class BibliotecaApp {
         appInteraction = new AppInteraction(inputOutputStream); //TODO: dependency
     }
 
+    public static void main(String[] args) throws IOException, QuittingPlaceholderException {
+        InputOutputStream inputOutputStream = new InputOutputStream();
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(new BookShelf(inputOutputStream), inputOutputStream);
+
+        bibliotecaApp.displayMenu();
+        bibliotecaApp.chooseMenuOption();
+
+    }
+
     public void displayMenu() {
         Menu.display();
     }
