@@ -48,7 +48,7 @@ class BibliotecaAppTest {
 
                 bibliotecaApp.chooseMenuOption();
 
-                verify(bookShelf, times(1)).displayListOfBooks();
+                verify(bookShelf, times(1)).displayList();
             } catch (QuittingPlaceholderException exception) {
                 //Has Quit
             }

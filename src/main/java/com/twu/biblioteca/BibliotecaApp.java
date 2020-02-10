@@ -21,7 +21,7 @@ public class BibliotecaApp {
         String inputBook;
         switch (choice) { // TODO: switch case
             case 1: //List of books
-                bookShelf.displayListOfBooks();
+                bookShelf.displayList();
                 break;
             case 2: //Checkout
                 inputBook = readInput();

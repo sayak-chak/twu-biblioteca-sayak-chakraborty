@@ -1,26 +1,25 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 public class BookShelf {
     private List<Book> booksInLibraryNow;
     private List<Book> checkedOutBooks;
     private SystemMessage systemMessage;
-    InputOutputStream inputOutputStream; //TODO: Private
+    private InputOutputStream inputOutputStream;
 
-    BookShelf(InputOutputStream inputOutputStream) {
-        //TODO: no need for new ArrayList
-        //TODO: default method ?
-        booksInLibraryNow = new ArrayList<>(Arrays.asList(new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication), new Book(DummyBooks.bookTwoName, DummyBooks.bookTwoAuthor, DummyBooks.bookTwoYearOfPublication)));
+    public BookShelf(InputOutputStream inputOutputStream) {
+        booksInLibraryNow = getDefaultBookList();
         checkedOutBooks = new ArrayList<>();
         systemMessage = new SystemMessage(inputOutputStream); // TODO: Can be mocked
         this.inputOutputStream = inputOutputStream;
     }
 
-    public void displayListOfBooks() {
+    public void displayList() {
         int serialNumber = 1;
         StringBuilder bookList = new StringBuilder();
         for (Book book : booksInLibraryNow) {
@@ -30,7 +29,7 @@ public class BookShelf {
                     .append("\n");
         }
         inputOutputStream.output(bookList.toString().trim());
-    } //TODO: books not needed in the name
+    }
 
     public void checkout(String bookName) {
         Book book;
@@ -66,6 +65,12 @@ public class BookShelf {
     private Book bookToBeReturned(String bookName) { //TODO: Optional
         for (Book book : checkedOutBooks) if (book.getName().equals(bookName)) return book;
         return null; //OR EXCEPTION?
+    }
+
+    private ArrayList<Book> getDefaultBookList() {
+        Book bookOne = new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication);
+        Book bookTwo = new Book(DummyBooks.bookTwoName, DummyBooks.bookTwoAuthor, DummyBooks.bookTwoYearOfPublication);
+        return new ArrayList<>(asList(bookOne, bookTwo));
     }
 
 }
