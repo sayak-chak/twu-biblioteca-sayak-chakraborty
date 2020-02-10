@@ -1,12 +1,12 @@
 package com.twu.biblioteca;
 
-import java.util.Arrays;
 import java.util.List;
 
+import static com.twu.biblioteca.Message.*;
+import static java.util.Arrays.asList;
+
 public final class Menu {
-    //TODO: static imports and long list
-    //TODO: formatting
-    private static List<String> menuOptions = Arrays.asList(Message.menuOptionOne, Message.menuOptionTwo, Message.menuOptionThree, Message.menuOptionFour);
+    private static List<String> menuOptions = asList(menuOptionOne, menuOptionTwo, menuOptionThree, menuOptionFour);
 
     public static void display() {
         StringBuilder menu = new StringBuilder(Message.instruction + "\n");
