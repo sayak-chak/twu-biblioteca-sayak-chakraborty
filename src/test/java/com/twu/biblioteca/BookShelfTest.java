@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,8 +10,8 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BookShelfTest {
-    ByteArrayOutputStream outContent;
-    BookShelf bookShelf;
+    private ByteArrayOutputStream outContent;
+    private BookShelf bookShelf;
 
     @BeforeEach
     public void initialize() {
@@ -19,8 +20,15 @@ class BookShelfTest {
         bookShelf = new BookShelf(new InputOutputStream());
     }
 
+    @AfterEach
+    public void clear() {
+        outContent = null;
+        System.out.close();
+        bookShelf = null;
+    }
+
     @Test
-    public void testShouldDisplayListOfBooksWhenShelfHasMultipleBooks() {
+    public void testShouldOutputListOfBooksWhenShelfHasMultipleBooks() {
         String expected = EXPECTEDTESTOUTPUTS.bookList;
         bookShelf.displayList();
 
