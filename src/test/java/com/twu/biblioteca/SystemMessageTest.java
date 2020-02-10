@@ -11,14 +11,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SystemMessageTest {
     ByteArrayOutputStream outContent;
     SystemMessage systemMessage;
+    InputOutputStream inputOutputStream;
 
     @BeforeEach
     public void initializeOutputStreams() {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
+        inputOutputStream = new InputOutputStream();
         // After this all System.out.println() statements will come to outContent stream.
         // So, you can normally call
-        systemMessage = new SystemMessage();
+        systemMessage = new SystemMessage(inputOutputStream);
     }
 
     @Test

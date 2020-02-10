@@ -14,7 +14,7 @@ public class BookShelf {
     BookShelf(InputOutputStream inputOutputStream) {
         booksInLibraryNow = new ArrayList<>(Arrays.asList(new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication), new Book(DummyBooks.bookTwoName, DummyBooks.bookTwoAuthor, DummyBooks.bookTwoYearOfPublication)));
         checkedOutBooks = new ArrayList<>();
-        systemMessage = new SystemMessage();
+        systemMessage = new SystemMessage(inputOutputStream);
         this.inputOutputStream = inputOutputStream;
     }
 

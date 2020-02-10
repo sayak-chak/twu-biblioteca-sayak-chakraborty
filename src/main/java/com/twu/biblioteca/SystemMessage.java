@@ -1,30 +1,34 @@
 package com.twu.biblioteca;
 
 public class SystemMessage {
+    private InputOutputStream inputOutputStream;
 
+    SystemMessage(InputOutputStream inputOutputStream) {
+        this.inputOutputStream = inputOutputStream;
+    }
 
     public void welcome() {
-        System.out.println(Message.welcome);
+        inputOutputStream.output(Message.welcome);
     }
 
     public void invalidOption() {
-        System.out.println(Message.invalidOption);
+        inputOutputStream.output(Message.invalidOption);
     }
 
     public void returnFail() {
-        System.out.println(Message.returnFail);
+        inputOutputStream.output(Message.returnFail);
     }
 
     public void successfulReturn() {
-        System.out.println(Message.successfulReturn);
+        inputOutputStream.output(Message.successfulReturn);
     }
 
     public void checkoutFail() {
-        System.out.println(Message.checkOutFail);
+        inputOutputStream.output(Message.checkOutFail);
     }
 
     public void successfulCheckout() {
-        System.out.println(Message.successfulCheckOut);
+        inputOutputStream.output(Message.successfulCheckOut);
     }
 
 }

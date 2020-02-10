@@ -9,7 +9,7 @@ public class BibliotecaApp {
 
     BibliotecaApp(BookShelf bookShelf, InputOutputStream inputOutputStream) {
         this.bookShelf = bookShelf;
-        systemMessage = new SystemMessage();
+        systemMessage = new SystemMessage(inputOutputStream);
         this.inputOutputStream = inputOutputStream;
     }
 
