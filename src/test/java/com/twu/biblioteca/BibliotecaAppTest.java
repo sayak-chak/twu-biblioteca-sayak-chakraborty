@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -20,17 +19,19 @@ class BibliotecaAppTest {
     @DisplayName("Menu Test")
     class MenuTest {
         ByteArrayOutputStream out;
+        InputStream inputStream;
 
         @BeforeEach
         public void initializeOutputStream() {
             out = new ByteArrayOutputStream();
             System.setOut(new PrintStream(out));
+            inputStream = mock(InputStream.class);
         }
 
         @Test
         public void testShouldDisplayTheMenu() {
             BookShelf bookShelf = mock(BookShelf.class);
-            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
+            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
             String expectedMenu = EXPECTEDTESTOUTPUTS.menu + "\n";
 
             bibliotecaApp.displayMenu();
@@ -41,48 +42,47 @@ class BibliotecaAppTest {
         @Test
         public void testShouldDisplayTheListOfBooksAfterChoosingDisplayBooksOption() throws IOException {
             BookShelf bookShelf = mock(BookShelf.class);
-            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
-            System.setIn(new ByteArrayInputStream("1\n4".getBytes()));
+            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
+            when(inputStream.input()).thenReturn("1", "4");
 
             bibliotecaApp.chooseMenuOption();
 
             verify(bookShelf, times(1)).displayListOfBooks();
         }
-//
-//        @Test
-//        public void testShouldNotifyOnChoosingAnInvalidOption() throws IOException {
-//            BookShelf bookShelf = mock(BookShelf.class);
-//            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
-//            String expectedNotification = Message.invalidOption + "\n";
-//
-//            bibliotecaApp.actionOnChoosingAnOptionFromMenu(-1);
-//
-//            assertEquals(expectedNotification, out.toString());
-//        }
-//
-//        @Test
-//        public void testShouldCheckoutABookOnChoosingCheckoutOption() throws IOException {
-//            BookShelf bookShelf = mock(BookShelf.class);
-//            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
-//            String invalidBook = InvalidBook.name;
-//            System.setIn(new ByteArrayInputStream(invalidBook.getBytes()));
-//
-//            bibliotecaApp.actionOnChoosingAnOptionFromMenu(2);
-//
-//            verify(bookShelf, times(1)).checkout(invalidBook);
-//        }
-//
-//        @Test
-//        public void testShouldReturnABookOnChoosingCheckoutOption() throws IOException {
-//            BookShelf bookShelf = mock(BookShelf.class);
-//            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
-//            String invalidBook = InvalidBook.name;
-//            System.setIn(new ByteArrayInputStream(invalidBook.getBytes()));
-//
-//            bibliotecaApp.actionOnChoosingAnOptionFromMenu(3);
-//
-//            verify(bookShelf, times(1)).returnBook(invalidBook);
-//        }
+
+        @Test
+        public void testShouldNotifyOnChoosingAnInvalidOption() throws IOException {
+            BookShelf bookShelf = mock(BookShelf.class);
+            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
+            when(inputStream.input()).thenReturn("-1", "4");
+            String expectedNotification = Message.invalidOption + "\n";
+
+            bibliotecaApp.chooseMenuOption();
+
+            assertEquals(expectedNotification, out.toString());
+        }
+
+        @Test
+        public void testShouldCheckoutABookOnChoosingCheckoutOption() throws IOException {
+            BookShelf bookShelf = mock(BookShelf.class);
+            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
+            when(inputStream.input()).thenReturn("2", InvalidBook.name, "4");
+
+            bibliotecaApp.chooseMenuOption();
+
+            verify(bookShelf, times(1)).checkout(InvalidBook.name);
+        }
+
+        @Test
+        public void testShouldReturnABookOnChoosingCheckoutOption() throws IOException {
+            BookShelf bookShelf = mock(BookShelf.class);
+            BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputStream);
+            when(inputStream.input()).thenReturn("2", InvalidBook.name, "4");
+
+            bibliotecaApp.chooseMenuOption();
+
+            verify(bookShelf, times(1)).checkout(InvalidBook.name);
+        }
 
     }
 }

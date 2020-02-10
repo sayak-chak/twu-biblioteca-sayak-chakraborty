@@ -1,16 +1,16 @@
 package com.twu.biblioteca;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class BibliotecaApp {
+    private InputStream inputStream;
     BookShelf bookShelf;
     private SystemMessage systemMessage;
 
-    BibliotecaApp(BookShelf bookShelf) {
+    BibliotecaApp(BookShelf bookShelf, InputStream inputStream) {
         this.bookShelf = bookShelf;
         systemMessage = new SystemMessage();
+        this.inputStream = inputStream;
     }
 
     public void displayMenu() {
@@ -40,8 +40,7 @@ public class BibliotecaApp {
     }
 
     private String readInput() throws IOException {
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        return in.readLine();
+        return inputStream.input();
     }
 
 
