@@ -34,7 +34,7 @@ class BookShelfTest {
 
         bookShelf.checkout(DUMMYBOOKS.bookTwoName);
 
-        assertEquals(Collections.singletonList(new Book(DUMMYBOOKS.bookOneName, DUMMYBOOKS.bookOneAuthor, DUMMYBOOKS.bookOneYearOfPublication)), bookShelf.booksInLibraryNow);
+        assertEquals(Collections.singletonList(new Book(DUMMYBOOKS.bookOneName, DUMMYBOOKS.bookOneAuthor, DUMMYBOOKS.bookOneYearOfPublication)), bookShelf.getBooksInLibraryNow());
     }
 
     @Test
@@ -64,7 +64,7 @@ class BookShelfTest {
         bookShelf.checkout(DUMMYBOOKS.bookTwoName);
         bookShelf.returnBook(DUMMYBOOKS.bookTwoName);
 
-        assertEquals(Arrays.asList(new Book(DUMMYBOOKS.bookOneName, DUMMYBOOKS.bookOneAuthor, DUMMYBOOKS.bookOneYearOfPublication), new Book(DUMMYBOOKS.bookTwoName, DUMMYBOOKS.bookTwoAuthor, DUMMYBOOKS.bookTwoYearOfPublication)), bookShelf.booksInLibraryNow);
+        assertEquals(Arrays.asList(new Book(DUMMYBOOKS.bookOneName, DUMMYBOOKS.bookOneAuthor, DUMMYBOOKS.bookOneYearOfPublication), new Book(DUMMYBOOKS.bookTwoName, DUMMYBOOKS.bookTwoAuthor, DUMMYBOOKS.bookTwoYearOfPublication)), bookShelf.getBooksInLibraryNow());
     }
 
     @Test

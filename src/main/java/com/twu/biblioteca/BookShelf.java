@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class BookShelf {
-    public List<Book> booksInLibraryNow;
+    private List<Book> booksInLibraryNow;
     private List<Book> checkedOutBooks;
     private SystemMessage systemMessage;
 
@@ -64,5 +64,8 @@ public class BookShelf {
         return false;
     }
 
+    public List<Book> getBooksInLibraryNow() {
+        return booksInLibraryNow;
+    }
 }
 
