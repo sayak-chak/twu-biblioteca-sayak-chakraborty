@@ -2,13 +2,12 @@ package com.twu.biblioteca;
 
 import java.io.IOException;
 
-//TODO: structure for the class
 public class BibliotecaApp {
-    BookShelf bookShelf;//TODO: private
+    private BookShelf bookShelf;
     private InputOutputStream inputOutputStream;
     private SystemMessage systemMessage;
 
-    BibliotecaApp(BookShelf bookShelf, InputOutputStream inputOutputStream) {
+    public BibliotecaApp(BookShelf bookShelf, InputOutputStream inputOutputStream) {
         this.bookShelf = bookShelf;
         systemMessage = new SystemMessage(inputOutputStream); //TODO: dependency
         this.inputOutputStream = inputOutputStream;
