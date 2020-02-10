@@ -47,7 +47,7 @@ class BibliotecaAppTest {
         }
 
         @Test
-        public void testShouldThrowAppropriateExceptionOnChoosingAnInvalidOption() {
+        public void testShouldNotifyOnChoosingAnInvalidOption() {
             BookShelf bookShelf = mock(BookShelf.class);
             BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
             String expectedNotification = MESSAGE.INVALIDOPTION + "\n";

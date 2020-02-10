@@ -14,21 +14,18 @@ public class BibliotecaApp {
     }
 
     public void actionOnChoosingAnOptionFromMenu(int choice) {
-        try {
-            switch (choice) {
-                case 1:
-                    bookShelf.displayListOfBooks();
-                    break;
-                case 2:
-                    System.exit(0);
-                    break;
-                default:
-                    throw new InvalidOptionException();
-            }
 
-        } catch (InvalidOptionException Exception) {
-            systemMessage.invalidOption();
+        switch (choice) {
+            case 1:
+                bookShelf.displayListOfBooks();
+                break;
+            case 2:
+                System.exit(0);
+                break;
+            default:
+                systemMessage.invalidOption();
         }
+
 
     }
 }
