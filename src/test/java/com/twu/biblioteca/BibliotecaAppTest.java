@@ -29,7 +29,7 @@ class BibliotecaAppTest {
         public void testShouldDisplayTheMenu() {
             BookShelf bookShelf = mock(BookShelf.class);
             BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf);
-            String expectedMenu = MESSAGE.menu + "\n";
+            String expectedMenu = EXPECTEDTESTOUTPUTS.menu + "\n";
 
             bibliotecaApp.displayMenu();
 

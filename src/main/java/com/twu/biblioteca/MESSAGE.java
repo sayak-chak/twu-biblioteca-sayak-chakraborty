@@ -6,7 +6,6 @@ public enum MESSAGE {
     static final String successfulReturn = "Thank you for returning the book";
     static final String checkOutFail = "Sorry, that book is not available";
     static final String successfulCheckOut = "Thank You! Enjoy the book.";
-    static final String menu = "1. List Of Books\n2. Quit";
     static final String menuOptionOne = "List Of Books";
     static final String menuOptionTwo = "Quit";
     static final String invalidOption = "Please select a valid option!";

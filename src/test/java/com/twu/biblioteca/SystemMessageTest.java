@@ -80,7 +80,7 @@ class SystemMessageTest {
     public void testShouldDisplayTheMenu() {
         systemMessage.menu();
 
-        String expectedOutput = MESSAGE.menu + "\n";
+        String expectedOutput = EXPECTEDTESTOUTPUTS.menu + "\n";
 
         assertEquals(expectedOutput, outContent.toString());
     }
