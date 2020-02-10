@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +14,15 @@ class BookTest {
     ByteArrayOutputStream outContent; //TODO: private
 
     @BeforeEach
-    public void initializeOutputStreams() {
+    public void initialize() {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
+    }
+
+    @AfterEach
+    public void clear() {
+        outContent = null;
+        System.out.close();
     }
 
     @Test
