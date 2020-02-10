@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
-public enum DUMMYBOOKS {
-    ;
+public final class DummyBooks {
     static final String bookOneName = "Dummy Book One", bookOneAuthor = "Dummy Author One";
     static final int bookOneYearOfPublication = 2000;
     static final String bookTwoName = "Dummy Book Two", bookTwoAuthor = "Dummy Author Two";

@@ -11,7 +11,7 @@ public class BookShelf {
     private SystemMessage systemMessage;
 
     BookShelf() {
-        booksInLibraryNow = new ArrayList<>(Arrays.asList(new Book(DUMMYBOOKS.bookOneName, DUMMYBOOKS.bookOneAuthor, DUMMYBOOKS.bookOneYearOfPublication), new Book(DUMMYBOOKS.bookTwoName, DUMMYBOOKS.bookTwoAuthor, DUMMYBOOKS.bookTwoYearOfPublication)));
+        booksInLibraryNow = new ArrayList<>(Arrays.asList(new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication), new Book(DummyBooks.bookTwoName, DummyBooks.bookTwoAuthor, DummyBooks.bookTwoYearOfPublication)));
         checkedOutBooks = new ArrayList<>();
         systemMessage = new SystemMessage();
     }
