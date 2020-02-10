@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SystemMessageTest {
     ByteArrayOutputStream outContent;
+    SystemMessage systemMessage;
 
     @BeforeEach
     public void initializeOutputStreams() {
@@ -17,12 +18,11 @@ class SystemMessageTest {
         System.setOut(new PrintStream(outContent));
         // After this all System.out.println() statements will come to outContent stream.
         // So, you can normally call
+        systemMessage = new SystemMessage();
     }
 
     @Test
     public void testShouldDisplayTheCorrectWelcomeMessage() {
-        SystemMessage systemMessage = new SystemMessage();
-
         systemMessage.welcome();
         //Now you have to validate the output
         String expectedOutput = MESSAGE.WELCOME + "\n"; // Notice the \n for new line.
@@ -32,9 +32,43 @@ class SystemMessageTest {
     }
 
     @Test
-    public void testShouldDisplayInvalidOptionMessage() {
-        SystemMessage systemMessage = new SystemMessage();
+    public void testShouldDisplaySuccessfulCheckoutMessage() {
+        systemMessage.successfulCheckout();
 
+        String expectedOutput = MESSAGE.SUCCESSFULCHECKOUT + "\n";
+
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    public void testShouldDisplayCheckoutFailMessage() {
+        systemMessage.checkoutFail();
+
+        String expectedOutput = MESSAGE.CHECKOUTFAIL + "\n";
+
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    public void testShouldDisplaySuccessfulReturnMessage() {
+        systemMessage.successfulReturn();
+
+        String expectedOutput = MESSAGE.SUCCESSFULRETURN + "\n";
+
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    public void testShouldDisplayReturnFailMessage() {
+        systemMessage.returnFail();
+
+        String expectedOutput = MESSAGE.RETURNFAIL + "\n";
+
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    public void testShouldDisplayInvalidOptionMessage() {
         systemMessage.invalidOption();
 
         String expectedOutput = MESSAGE.INVALIDOPTION + "\n";
