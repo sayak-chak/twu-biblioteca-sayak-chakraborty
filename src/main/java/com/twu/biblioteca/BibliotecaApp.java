@@ -2,14 +2,15 @@ package com.twu.biblioteca;
 
 import java.io.IOException;
 
+//TODO: structure for the class
 public class BibliotecaApp {
-    BookShelf bookShelf;
+    BookShelf bookShelf;//TODO: private
     private InputOutputStream inputOutputStream;
     private SystemMessage systemMessage;
 
     BibliotecaApp(BookShelf bookShelf, InputOutputStream inputOutputStream) {
         this.bookShelf = bookShelf;
-        systemMessage = new SystemMessage(inputOutputStream);
+        systemMessage = new SystemMessage(inputOutputStream); //TODO: dependency
         this.inputOutputStream = inputOutputStream;
     }
 
@@ -19,7 +20,7 @@ public class BibliotecaApp {
 
     private void actionOnChoosingAnOptionFromMenu(int choice) throws IOException, QuittingPlaceholderException {
         String inputBook;
-        switch (choice) {
+        switch (choice) { // TODO: switch case
             case 1: //List of books
                 bookShelf.displayListOfBooks();
                 break;

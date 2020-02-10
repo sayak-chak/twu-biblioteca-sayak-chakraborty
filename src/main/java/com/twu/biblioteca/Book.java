@@ -16,7 +16,7 @@ public class Book {
         return this.name;
     }
 
-    public String getNameAuthorAndYearOfPublication() {
+    public String getNameAuthorAndYearOfPublication() { //TODO: name
         return this.name + " | " + this.author + " | " + this.yearOfPublication;
     }
 
@@ -33,5 +33,14 @@ public class Book {
     @Override
     public int hashCode() {
         return Objects.hash(name, author, yearOfPublication);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", yearOfPublication=" + yearOfPublication +
+                '}';
     }
 }

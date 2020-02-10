@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class BookTest {
-    ByteArrayOutputStream outContent;
+    ByteArrayOutputStream outContent; //TODO: private
 
     @BeforeEach
     public void initializeOutputStreams() {
@@ -19,7 +19,7 @@ class BookTest {
     }
 
     @Test
-    void testShouldDisplayTheBookName() {
+    void testShouldDisplayTheBookName() { // TODO: is this test needed ?
         Book book = new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication);
         String expectedOutput = DummyBooks.bookOneName + "\n";
 
@@ -29,7 +29,7 @@ class BookTest {
     }
 
     @Test
-    void testShouldDisplayTheBookNameAuthorAndYearOfPublication() {
+    void testShouldDisplayTheBookNameAuthorAndYearOfPublication() { //TODO: do we need to assert on stream ?
         Book book = new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication);
         String expectedOutput = DummyBooks.bookOneName + " | " + DummyBooks.bookOneAuthor + " | " + DummyBooks.bookOneYearOfPublication + "\n";
 

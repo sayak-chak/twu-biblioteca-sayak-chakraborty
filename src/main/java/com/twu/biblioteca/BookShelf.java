@@ -9,12 +9,14 @@ public class BookShelf {
     private List<Book> booksInLibraryNow;
     private List<Book> checkedOutBooks;
     private SystemMessage systemMessage;
-    InputOutputStream inputOutputStream;
+    InputOutputStream inputOutputStream; //TODO: Private
 
     BookShelf(InputOutputStream inputOutputStream) {
+        //TODO: no need for new ArrayList
+        //TODO: default method ?
         booksInLibraryNow = new ArrayList<>(Arrays.asList(new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication), new Book(DummyBooks.bookTwoName, DummyBooks.bookTwoAuthor, DummyBooks.bookTwoYearOfPublication)));
         checkedOutBooks = new ArrayList<>();
-        systemMessage = new SystemMessage(inputOutputStream);
+        systemMessage = new SystemMessage(inputOutputStream); // TODO: Can be mocked
         this.inputOutputStream = inputOutputStream;
     }
 
@@ -22,11 +24,13 @@ public class BookShelf {
         int serialNumber = 1;
         StringBuilder bookList = new StringBuilder();
         for (Book book : booksInLibraryNow) {
-            bookList.append(serialNumber++).append(". ").append(book.getNameAuthorAndYearOfPublication()).append("\n");
+            bookList.append(serialNumber++)
+                    .append(". ")
+                    .append(book.getNameAuthorAndYearOfPublication())
+                    .append("\n");
         }
         inputOutputStream.output(bookList.toString().trim());
-    }
-
+    } //TODO: books not needed in the name
 
     public void checkout(String bookName) {
         Book book;
@@ -55,11 +59,11 @@ public class BookShelf {
         systemMessage.successfulReturn();
     }
 
-    public List<Book> getBooksInLibraryNow() {
+    public List<Book> getBooksInLibraryNow() { //TODO: breaks entire library app. breaks encapsulation just for testing
         return booksInLibraryNow;
     }
 
-    private Book bookToBeReturned(String bookName) {
+    private Book bookToBeReturned(String bookName) { //TODO: Optional
         for (Book book : checkedOutBooks) if (book.getName().equals(bookName)) return book;
         return null; //OR EXCEPTION?
     }

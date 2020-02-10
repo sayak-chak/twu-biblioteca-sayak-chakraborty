@@ -33,7 +33,8 @@ class BookShelfTest {
     public void testShouldCheckoutABookThatIsInBookList() {
         bookShelf.checkout(DummyBooks.bookTwoName);
 
-        assertEquals(Collections.singletonList(new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication)), bookShelf.getBooksInLibraryNow());
+        //TODO: not readable
+        assertEquals(Collections.singletonList(new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication)), bookShelf.getBooksInLibraryNow()); //TODO: not readable
     }
 
     @Test
@@ -59,6 +60,7 @@ class BookShelfTest {
         bookShelf.checkout(DummyBooks.bookTwoName);
         bookShelf.returnBook(DummyBooks.bookTwoName);
 
+        //TODO: not readable
         assertEquals(Arrays.asList(new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication), new Book(DummyBooks.bookTwoName, DummyBooks.bookTwoAuthor, DummyBooks.bookTwoYearOfPublication)), bookShelf.getBooksInLibraryNow());
     }
 
