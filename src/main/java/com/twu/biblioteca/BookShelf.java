@@ -26,7 +26,7 @@ public class BookShelf {
         for (Book book : booksInLibraryNow) {
             bookList.append(serialNumber++)
                     .append(". ")
-                    .append(book.getNameAuthorAndYearOfPublication())
+                    .append(book.getDetails())
                     .append("\n");
         }
         inputOutputStream.output(bookList.toString().trim());

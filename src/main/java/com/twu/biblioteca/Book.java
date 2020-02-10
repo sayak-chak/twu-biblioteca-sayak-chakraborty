@@ -16,7 +16,7 @@ public class Book {
         return this.name;
     }
 
-    public String getNameAuthorAndYearOfPublication() { //TODO: name
+    public String getDetails() {
         return this.name + " | " + this.author + " | " + this.yearOfPublication;
     }
 
