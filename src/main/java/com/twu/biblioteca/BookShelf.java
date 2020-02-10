@@ -10,25 +10,15 @@ public class BookShelf {
     private List<Book> booksInLibraryNow;
     private List<Book> checkedOutBooks;
     private AppInteraction appInteraction;
-    private InputOutputStream inputOutputStream;
 
     public BookShelf(InputOutputStream inputOutputStream) {
         booksInLibraryNow = getDefaultBookList();
         checkedOutBooks = new ArrayList<>();
-        appInteraction = new AppInteraction(inputOutputStream); // TODO: Can be mocked
-        this.inputOutputStream = inputOutputStream;
+        appInteraction = new AppInteraction(new InputOutputStream()); // TODO: Can be mocked
     }
 
     public void displayList() {
-        int serialNumber = 1;
-        StringBuilder bookList = new StringBuilder();
-        for (Book book : booksInLibraryNow) {
-            bookList.append(serialNumber++)
-                    .append(". ")
-                    .append(book.getDetails())
-                    .append("\n");
-        }
-        inputOutputStream.output(bookList.toString().trim());
+        appInteraction.printList(booksInLibraryNow);
     }
 
     public void checkout(String bookName) {
