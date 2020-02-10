@@ -58,9 +58,9 @@ public class BookShelf {
         systemMessage.successfulReturn();
     }
 
-    private Book bookToBeReturned(String bookName) { //TODO: Optional
+    private Book bookToBeReturned(String bookName) { //TODO: Optional => Optional class isn't changing this so unnecessary atm
         for (Book book : checkedOutBooks) if (book.getName().equals(bookName)) return book;
-        return null; //OR EXCEPTION?
+        return null;
     }
 
     private ArrayList<Book> getDefaultBookList() {
