@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.io.IOException;
 import java.util.List;
 
 public class AppInteraction {
@@ -45,5 +46,8 @@ public class AppInteraction {
         inputOutputStream.output(Message.successfulCheckOut);
     }
 
+    public String readInput() throws IOException {
+        return inputOutputStream.input();
+    }
 
 }

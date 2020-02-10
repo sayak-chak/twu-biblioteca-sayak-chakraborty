@@ -16,6 +16,7 @@ class InputOutputStreamTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
         System.setIn(new ByteArrayInputStream("Hello".getBytes()));
+
         InputOutputStream inputOutputStream = new InputOutputStream();
 
         inputOutputStream.output(inputOutputStream.input());

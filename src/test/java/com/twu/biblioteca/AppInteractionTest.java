@@ -3,7 +3,9 @@ package com.twu.biblioteca;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
 
@@ -90,5 +92,14 @@ class AppInteractionTest {
         appInteraction.printList(list);
 
         assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    public void testShouldTakeInputHello() throws IOException {
+        System.setIn(new ByteArrayInputStream("Hello".getBytes()));
+
+        String input = appInteraction.readInput();
+
+        assertEquals("Hello", input);
     }
 }
