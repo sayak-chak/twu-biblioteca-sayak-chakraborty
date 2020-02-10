@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Arrays;
-import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,7 +13,7 @@ class BookShelfTest {
     BookShelf bookShelf;
 
     @BeforeEach
-    public void initializeOutputStreams() {
+    public void initialize() {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         bookShelf = new BookShelf(new InputOutputStream());
@@ -31,10 +29,13 @@ class BookShelfTest {
 
     @Test
     public void testShouldCheckoutABookThatIsInBookList() {
+
         bookShelf.checkout(DummyBooks.bookTwoName);
 
-        //TODO: not readable
-        assertEquals(Collections.singletonList(new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication)), bookShelf.getBooksInLibraryNow()); //TODO: not readable
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        bookShelf.displayList();
+        assertEquals("1. " + DummyBooks.bookOneName + " | " + DummyBooks.bookOneAuthor + " | " + DummyBooks.bookOneYearOfPublication + "\n", outContent.toString());
     }
 
     @Test
@@ -60,8 +61,11 @@ class BookShelfTest {
         bookShelf.checkout(DummyBooks.bookTwoName);
         bookShelf.returnBook(DummyBooks.bookTwoName);
 
-        //TODO: not readable
-        assertEquals(Arrays.asList(new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication), new Book(DummyBooks.bookTwoName, DummyBooks.bookTwoAuthor, DummyBooks.bookTwoYearOfPublication)), bookShelf.getBooksInLibraryNow());
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        bookShelf.displayList();
+
+        assertEquals("1. " + DummyBooks.bookOneName + " | " + DummyBooks.bookOneAuthor + " | " + DummyBooks.bookOneYearOfPublication + "\n2. " + DummyBooks.bookTwoName + " | " + DummyBooks.bookTwoAuthor + " | " + DummyBooks.bookTwoYearOfPublication + "\n", outContent.toString());
     }
 
     @Test

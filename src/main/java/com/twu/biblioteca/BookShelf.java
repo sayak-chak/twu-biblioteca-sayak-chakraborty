@@ -58,10 +58,6 @@ public class BookShelf {
         systemMessage.successfulReturn();
     }
 
-    public List<Book> getBooksInLibraryNow() { //TODO: breaks entire library app. breaks encapsulation just for testing
-        return booksInLibraryNow;
-    }
-
     private Book bookToBeReturned(String bookName) { //TODO: Optional
         for (Book book : checkedOutBooks) if (book.getName().equals(bookName)) return book;
         return null; //OR EXCEPTION?
