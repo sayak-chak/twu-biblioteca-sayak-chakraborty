@@ -14,7 +14,7 @@ public final class Menu {
         for (String menuOption : menuOptions) {
             menu.append(serialNumber++).append(". ").append(menuOption).append("\n");
         }
-        System.out.println(menu.toString().trim());
+        new InputOutputStream().output(menu.toString().trim());
     }
 
 }

@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
+import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AppInteractionTest {
@@ -74,6 +76,18 @@ class AppInteractionTest {
         appInteraction.invalidOption();
 
         String expectedOutput = Message.invalidOption + "\n";
+
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    public void testShouldPrintAList() {
+        Book dummyBookOne = new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication);
+        Book dummyBookTwo = new Book(DummyBooks.bookTwoName, DummyBooks.bookTwoAuthor, DummyBooks.bookTwoYearOfPublication);
+        List<Book> list = asList(dummyBookOne, dummyBookTwo);
+        String expectedOutput = EXPECTEDTESTOUTPUTS.bookList;
+
+        appInteraction.printList(list);
 
         assertEquals(expectedOutput, outContent.toString());
     }

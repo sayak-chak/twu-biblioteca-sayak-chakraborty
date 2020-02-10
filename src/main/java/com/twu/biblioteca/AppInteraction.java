@@ -9,13 +9,13 @@ public class AppInteraction {
         this.inputOutputStream = inputOutputStream;
     }
 
-    public void printList(List<Book> list) {
+    public <T> void printList(List<T> list) {
         int serialNumber = 1;
         StringBuilder output = new StringBuilder();
-        for (Book book : list) {
+        for (T listItem : list) {
             output.append(serialNumber++)
                     .append(". ")
-                    .append(book.getDetails())
+                    .append(listItem.toString())
                     .append("\n");
         }
         inputOutputStream.output(output.toString().trim());
