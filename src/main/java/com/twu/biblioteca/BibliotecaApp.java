@@ -16,16 +16,16 @@ public class BibliotecaApp {
     public void actionOnChoosingAnOptionFromMenu(int choice) {
 
         switch (choice) {
-            case 1:
+            case 1: //List of books
                 bookShelf.displayListOfBooks();
                 break;
-            case 2:
+            case 4: //Quit
                 System.exit(0);
                 break;
             default:
                 systemMessage.invalidOption();
         }
 
-
     }
+
 }
