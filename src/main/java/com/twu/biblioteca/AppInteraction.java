@@ -50,4 +50,7 @@ public class AppInteraction {
         return inputOutputStream.input();
     }
 
+    public void print(String message) {
+        inputOutputStream.output(message);
+    }
 }

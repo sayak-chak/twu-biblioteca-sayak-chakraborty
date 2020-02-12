@@ -109,4 +109,11 @@ class AppInteractionTest {
 
         assertEquals("Hello", input);
     }
+
+    @Test
+    public void testShouldPrintHello() throws IOException {
+        appInteraction.print("Hello");
+
+        assertEquals("Hello\n", outContent.toString());
+    }
 }
