@@ -15,7 +15,7 @@ class BookShelfTest {
     @BeforeEach
     public void initialize() {
         appInteraction = mock(AppInteraction.class);
-        bookList = BookShelf.getDefaultList();
+        bookList = DummyBooks.getDefaultList();
         bookShelf = new BookShelf(bookList, appInteraction);
     }
 
@@ -43,14 +43,14 @@ class BookShelfTest {
     @Test
     public void testShouldNotifyOnSuccessfullyReturningABook() {
         bookShelf.checkout(DummyBooks.bookTwoName);
-        bookShelf.returnBook(DummyBooks.bookTwoName);
+        bookShelf.returnItem(DummyBooks.bookTwoName);
 
         verify(appInteraction, times(1)).successfulReturn();
     }
 
     @Test
     public void testShouldNotifyOnFailureToReturnABook() {
-        bookShelf.returnBook("Invalid Book");
+        bookShelf.returnItem("Invalid Book");
 
         verify(appInteraction, times(1)).returnFail();
     }

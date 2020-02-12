@@ -84,7 +84,7 @@ class BibliotecaAppTest {
 
         } catch (QuittingPlaceholderException exception) { //Has Quit
 
-            verify(bookShelf, times(1)).returnBook(InvalidBook.name);
+            verify(bookShelf, times(1)).returnItem(InvalidBook.name);
         }
     }
 

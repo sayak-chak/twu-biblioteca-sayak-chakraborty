@@ -13,7 +13,7 @@ public class BibliotecaApp {
 
     public static void main(String[] args) throws IOException, QuittingPlaceholderException {
         AppInteraction appInteraction = new AppInteraction(new InputOutputStream());
-        BookShelf bookShelf = new BookShelf(BookShelf.getDefaultList(), appInteraction);
+        BookShelf bookShelf = new BookShelf(DummyBooks.getDefaultList(), appInteraction);
         BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, appInteraction);
 
         bibliotecaApp.displayMenu();
@@ -43,7 +43,7 @@ public class BibliotecaApp {
                 break;
             case Menu.choiceReturn:
                 inputBook = appInteraction.readInput();
-                bookShelf.returnBook(inputBook);
+                bookShelf.returnItem(inputBook);
                 break;
             case Menu.choiceQuit:
                 throw new QuittingPlaceholderException();//System.exit(0);
