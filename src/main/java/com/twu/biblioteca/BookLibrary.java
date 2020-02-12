@@ -31,7 +31,7 @@ public class BookLibrary extends Library {
     }
 
     private boolean validCredentials(Integer userId, String password) {
-        return userAccounts.get(userId).equals(password);
+        return userAccounts.containsKey(userId) && userAccounts.get(userId).equals(password);
     }
 
 }
