@@ -13,9 +13,9 @@ import static org.mockito.Mockito.*;
 
 class BibliotecaAppTest {
 
-    BookShelf bookShelf;
-    AppInteraction appInteraction;
-    BibliotecaApp bibliotecaApp;
+    private BookShelf bookShelf;
+    private AppInteraction appInteraction;
+    private BibliotecaApp bibliotecaApp;
 
     @BeforeEach
     public void initialize() {
