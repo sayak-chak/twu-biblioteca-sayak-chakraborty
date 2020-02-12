@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Library<T extends Item> {
+public abstract class Library {
     protected List<Item> itemsInLibraryNow;
     protected List<Item> checkedOutItems;
     protected AppInteraction appInteraction;
