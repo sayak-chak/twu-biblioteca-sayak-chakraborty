@@ -9,7 +9,7 @@ public final class DummyBooks {
     static final String bookTwoName = "Dummy Book Two", bookTwoAuthor = "Dummy Author Two";
     static final int bookTwoYearOfPublication = 2000;
 
-    public static List<Book> getDefaultList() {
+    public static List<Item> getDefaultList() {
         Book bookOne = new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication);
         Book bookTwo = new Book(DummyBooks.bookTwoName, DummyBooks.bookTwoAuthor, DummyBooks.bookTwoYearOfPublication);
         return Arrays.asList(bookOne, bookTwo);

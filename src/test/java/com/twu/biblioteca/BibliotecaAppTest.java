@@ -13,15 +13,15 @@ import static org.mockito.Mockito.*;
 
 class BibliotecaAppTest {
 
-    private BookShelf bookShelf;
+    private BookLibrary bookLibrary;
     private AppInteraction appInteraction;
     private BibliotecaApp bibliotecaApp;
 
     @BeforeEach
     public void initialize() {
-        bookShelf = mock(BookShelf.class);
+        bookLibrary = mock(BookLibrary.class);
         appInteraction = mock(AppInteraction.class);
-        bibliotecaApp = new BibliotecaApp(bookShelf, appInteraction);
+        bibliotecaApp = new BibliotecaApp(bookLibrary, appInteraction);
     }
 
     @Test
@@ -45,7 +45,7 @@ class BibliotecaAppTest {
 
         } catch (QuittingPlaceholderException exception) {//Has Quit
 
-            verify(bookShelf, times(1)).displayList();
+            verify(bookLibrary, times(1)).displayList();
         }
     }
 
@@ -71,7 +71,7 @@ class BibliotecaAppTest {
 
         } catch (QuittingPlaceholderException exception) {//Has Quit
 
-            verify(bookShelf, times(1)).checkout(InvalidBook.name);
+            verify(bookLibrary, times(1)).checkout(InvalidBook.name);
         }
     }
 
@@ -84,7 +84,7 @@ class BibliotecaAppTest {
 
         } catch (QuittingPlaceholderException exception) { //Has Quit
 
-            verify(bookShelf, times(1)).returnItem(InvalidBook.name);
+            verify(bookLibrary, times(1)).returnItem(InvalidBook.name);
         }
     }
 
