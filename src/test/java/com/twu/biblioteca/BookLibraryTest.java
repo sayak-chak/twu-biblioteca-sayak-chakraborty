@@ -32,7 +32,7 @@ class BookLibraryTest {
     @Test
     public void testShouldDisplaySuccessfulCheckoutMessageWhenUserEntersValidBookToCheckoutAndCorrectCredentials() throws IOException {
         when(appInteraction.readInput()).thenReturn(String.valueOf(DummyUser.libraryNumber), DummyUser.password);
-        when(authenticator.validUser(DummyUser.libraryNumber, DummyUser.password)).thenReturn(true);
+        when(authenticator.isValidUser(DummyUser.libraryNumber, DummyUser.password)).thenReturn(true);
 
         bookLibrary.checkout(DummyBooks.bookOneName);
 
@@ -42,7 +42,7 @@ class BookLibraryTest {
     @Test
     public void testShouldDisplayFailureMessageWhenUserEntersValidBookToCheckoutAndIncorrectPassword() throws IOException {
         when(appInteraction.readInput()).thenReturn(String.valueOf(DummyUser.libraryNumber), "Invalid password");
-        when(authenticator.validUser(DummyUser.libraryNumber, "Invalid password")).thenReturn(false);
+        when(authenticator.isValidUser(DummyUser.libraryNumber, "Invalid password")).thenReturn(false);
 
         bookLibrary.checkout(DummyBooks.bookOneName);
 
@@ -51,8 +51,8 @@ class BookLibraryTest {
 
     @Test
     public void testShouldFailureMessageWhenUserEntersValidBookToCheckoutAndInvalidUserId() throws IOException {
-        when(appInteraction.readInput()).thenReturn(String.valueOf(-100), "Invalid password");
-        when(authenticator.validUser(-100, "Invalid password")).thenReturn(false);
+        when(appInteraction.readInput()).thenReturn(String.valueOf(DummyUser.invalidLibraryNumber), "Invalid password");
+        when(authenticator.isValidUser(DummyUser.invalidLibraryNumber, "Invalid password")).thenReturn(false);
 
         bookLibrary.checkout(DummyBooks.bookOneName);
 
@@ -62,7 +62,7 @@ class BookLibraryTest {
     @Test
     public void testShouldDisplayFailureMessageOnEnteringInvalidBookName() throws IOException {
         when(appInteraction.readInput()).thenReturn(String.valueOf(DummyUser.libraryNumber), DummyUser.password);
-        when(authenticator.validUser(DummyUser.libraryNumber, DummyUser.password)).thenReturn(true);
+        when(authenticator.isValidUser(DummyUser.libraryNumber, DummyUser.password)).thenReturn(true);
 
         bookLibrary.checkout("Invalid book");
 
@@ -74,7 +74,7 @@ class BookLibraryTest {
         when(appInteraction.readInput()).
                 thenReturn(String.valueOf(DummyUser.libraryNumber), DummyUser.password,
                         String.valueOf(DummyUser.libraryNumber), DummyUser.password);
-        when(authenticator.validUser(DummyUser.libraryNumber, DummyUser.password)).thenReturn(true, true);
+        when(authenticator.isValidUser(DummyUser.libraryNumber, DummyUser.password)).thenReturn(true, true);
 
         bookLibrary.checkout(DummyBooks.bookOneName);
         bookLibrary.returnItem(DummyBooks.bookOneName);
@@ -86,8 +86,8 @@ class BookLibraryTest {
     public void testShouldFailureMessageWhenUserEntersValidBookToReturnAndIncorrectPassword() throws IOException {
         when(appInteraction.readInput()).
                 thenReturn(String.valueOf(DummyUser.libraryNumber), DummyUser.password,
-                        String.valueOf(DummyUser.libraryNumber), "Invalid password");
-        when(authenticator.validUser(DummyUser.libraryNumber, "Invalid Password")).thenReturn(true, false);
+                        String.valueOf(DummyUser.libraryNumber), DummyUser.invalidPassword);
+        when(authenticator.isValidUser(DummyUser.libraryNumber, "Invalid Password")).thenReturn(true, false);
 
         bookLibrary.checkout(DummyBooks.bookOneName);
         bookLibrary.returnItem(DummyBooks.bookOneName);
@@ -99,10 +99,10 @@ class BookLibraryTest {
     public void testShouldFailureMessageWhenUserEntersValidBookToReturnAndInvalidUserId() throws IOException {
         when(appInteraction.readInput()).
                 thenReturn(String.valueOf(DummyUser.libraryNumber), DummyUser.password,
-                        String.valueOf(-100), "Invalid password");
+                        String.valueOf(DummyUser.invalidLibraryNumber), DummyUser.invalidPassword);
 
         //Valid credentials whle checkout invalid while returning
-        when(authenticator.validUser(DummyUser.libraryNumber, DummyUser.password)).thenReturn(true, false);
+        when(authenticator.isValidUser(DummyUser.libraryNumber, DummyUser.password)).thenReturn(true, false);
 
         bookLibrary.checkout(DummyBooks.bookOneName);
         bookLibrary.returnItem(DummyBooks.bookOneName);
@@ -116,7 +116,7 @@ class BookLibraryTest {
         when(appInteraction.readInput()).
                 thenReturn(String.valueOf(DummyUser.libraryNumber), DummyUser.password,
                         String.valueOf(DummyUser.libraryNumber), DummyUser.password);
-        when(authenticator.validUser(DummyUser.libraryNumber, DummyUser.password)).thenReturn(true);
+        when(authenticator.isValidUser(DummyUser.libraryNumber, DummyUser.password)).thenReturn(true);
 
         bookLibrary.checkout(DummyBooks.bookOneName);
         bookLibrary.returnItem("Invalid Book");

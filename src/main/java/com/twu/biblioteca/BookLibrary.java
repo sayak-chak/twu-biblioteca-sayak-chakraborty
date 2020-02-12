@@ -41,7 +41,7 @@ public class BookLibrary extends Library {
 
 
     private boolean validCredentials(Integer userId, String password) {
-        return authenticator.validUser(userId, password);
+        return authenticator.isValidUser(userId, password);
     }
 
 }
