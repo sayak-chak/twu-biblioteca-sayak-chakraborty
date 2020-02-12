@@ -6,16 +6,16 @@ public class BibliotecaApp {
     private BookShelf bookShelf;
     private AppInteraction appInteraction;
 
-    public BibliotecaApp(BookShelf bookShelf, InputOutputStream inputOutputStream) {
+    public BibliotecaApp(BookShelf bookShelf, AppInteraction appInteraction) {
         this.bookShelf = bookShelf;
-        appInteraction = new AppInteraction(inputOutputStream); //TODO: dependency
+        this.appInteraction = appInteraction;
     }
 
     public static void main(String[] args) throws IOException, QuittingPlaceholderException {
         InputOutputStream inputOutputStream = new InputOutputStream();
         AppInteraction appInteraction = new AppInteraction(new InputOutputStream());
         BookShelf bookShelf = new BookShelf(BookShelf.getDefaultList(), appInteraction);
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputOutputStream);
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, appInteraction);
 
         bibliotecaApp.displayMenu();
         bibliotecaApp.chooseMenuOption();
