@@ -35,7 +35,7 @@ public abstract class Library {
         appInteraction.checkoutFail();
     }
 
-    public void returnItem(String itemName) {
+    public void returnItem(String itemName) throws IOException {
         Item itemToBeReturned = itemToBeReturned(itemName);
 
         if (itemToBeReturned == null) {

@@ -37,7 +37,7 @@ class BookLibraryTest {
     }
 
     @Test
-    public void testShouldFailureMessageWhenUserEntersValidBookToCheckoutAndIncorrectPassword() throws IOException {
+    public void testShouldDisplayFailureMessageWhenUserEntersValidBookToCheckoutAndIncorrectPassword() throws IOException {
         when(appInteraction.readInput()).thenReturn(String.valueOf(DummyUser.libraryNumber), "Invalid password");
 
         bookLibrary.checkout(DummyBooks.bookOneName);
@@ -64,19 +64,52 @@ class BookLibraryTest {
     }
 
     @Test
-    public void testShouldNotifyOnSuccessfullyReturningABook() throws IOException {
-        when(appInteraction.readInput()).thenReturn(String.valueOf(DummyUser.libraryNumber), DummyUser.password);
+    public void testShouldDisplaySuccessfulReturnMessageWhenUserEntersValidBookToReturnAndCorrectCredentials() throws IOException {
+        when(appInteraction.readInput()).
+                thenReturn(String.valueOf(DummyUser.libraryNumber), DummyUser.password,
+                        String.valueOf(DummyUser.libraryNumber), DummyUser.password);
 
-        bookLibrary.checkout(DummyBooks.bookTwoName);
-        bookLibrary.returnItem(DummyBooks.bookTwoName);
+        bookLibrary.checkout(DummyBooks.bookOneName);
+        bookLibrary.returnItem(DummyBooks.bookOneName);
 
-        verify(appInteraction, times(1)).successfulReturn();
+        verify(appInteraction, times(1)).successfulCheckout();
     }
 
     @Test
-    public void testShouldNotifyOnFailureToReturnABook() {
+    public void testShouldFailureMessageWhenUserEntersValidBookToReturnAndIncorrectPassword() throws IOException {
+        when(appInteraction.readInput()).
+                thenReturn(String.valueOf(DummyUser.libraryNumber), "Invalid password",
+                        String.valueOf(DummyUser.libraryNumber), "Invalid password");
+
+        bookLibrary.checkout(DummyBooks.bookOneName);
+        bookLibrary.returnItem(DummyBooks.bookOneName);
+
+        verify(appInteraction, times(1)).checkoutFail();
+    }
+
+    @Test
+    public void testShouldFailureMessageWhenUserEntersValidBookToReturnAndInvalidUserId() throws IOException {
+        when(appInteraction.readInput()).
+                thenReturn(String.valueOf(DummyUser.libraryNumber), DummyUser.password,
+                        String.valueOf(-100), "Invalid password");
+
+        bookLibrary.checkout(DummyBooks.bookOneName);
+        bookLibrary.returnItem(DummyBooks.bookOneName);
+
+        verify(appInteraction, times(1)).successfulCheckout();
+        verify(appInteraction, times(1)).returnFail();
+    }
+
+    @Test
+    public void testShouldDisplayReturnFailMessageOnEnteringInvalidBookName() throws IOException {
+        when(appInteraction.readInput()).
+                thenReturn(String.valueOf(DummyUser.libraryNumber), DummyUser.password,
+                        String.valueOf(DummyUser.libraryNumber), DummyUser.password);
+
+        bookLibrary.checkout(DummyBooks.bookOneName);
         bookLibrary.returnItem("Invalid Book");
 
+        verify(appInteraction, times(1)).successfulCheckout();
         verify(appInteraction, times(1)).returnFail();
     }
 

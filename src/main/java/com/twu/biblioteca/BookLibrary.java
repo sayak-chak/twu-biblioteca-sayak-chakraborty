@@ -30,6 +30,17 @@ public class BookLibrary extends Library {
         appInteraction.checkoutFail();
     }
 
+    @Override
+    public void returnItem(String itemName) throws IOException {
+        Integer userId = Integer.parseInt(appInteraction.readInput());
+        String password = appInteraction.readInput();
+        if (validCredentials(userId, password)) {
+            super.returnItem(itemName);
+            return;
+        }
+        appInteraction.returnFail();
+    }
+
     private boolean validCredentials(Integer userId, String password) {
         return userAccounts.containsKey(userId) && userAccounts.get(userId).equals(password);
     }
