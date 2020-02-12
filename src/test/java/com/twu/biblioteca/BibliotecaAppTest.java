@@ -31,7 +31,7 @@ class BibliotecaAppTest {
 
         bibliotecaApp.displayMenu();
 
-        assertEquals(EXPECTEDTESTOUTPUTS.menu + "\n", out.toString());
+        assertEquals(ExpectedTestOutputs.menu, out.toString());
 
         System.setOut(System.out);
     }

@@ -94,7 +94,7 @@ class AppInteractionTest {
         Book dummyBookOne = new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication);
         Book dummyBookTwo = new Book(DummyBooks.bookTwoName, DummyBooks.bookTwoAuthor, DummyBooks.bookTwoYearOfPublication);
         List<Book> list = asList(dummyBookOne, dummyBookTwo);
-        String expectedOutput = EXPECTEDTESTOUTPUTS.bookList;
+        String expectedOutput = ExpectedTestOutputs.bookList;
 
         appInteraction.printList(list);
 

@@ -1,7 +1,5 @@
 package com.twu.biblioteca;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -11,37 +9,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class BookTest {
-    ByteArrayOutputStream outContent; //TODO: private
+    @Test
+    void testShouldDisplayTheBookName() {
+        Book book = new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication);
 
-    @BeforeEach
-    public void initialize() {
-        outContent = new ByteArrayOutputStream();
+        assertEquals(DummyBooks.bookOneName, book.getName());
+    }
+
+    @Test
+    void testShouldPrintTheBookNameAuthorAndYearOfPublication() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-    }
+        Book bookOne = new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication);
 
-    @AfterEach
-    public void clear() {
-        outContent = null;
-        System.out.close();
-    }
+        System.out.println(bookOne.getDetails());
 
-    @Test
-    void testShouldDisplayTheBookName() { // TODO: is this test needed ?
-        Book book = new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication);
-        String expectedOutput = DummyBooks.bookOneName + "\n";
+        assertEquals(ExpectedTestOutputs.bookOneDetails, outContent.toString());
 
-        System.out.println(book.getName());
-
-        assertEquals(expectedOutput, outContent.toString());
-    }
-
-    @Test
-    void testShouldDisplayTheBookNameAuthorAndYearOfPublication() { //TODO: do we need to assert on stream ?
-        Book book = new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication);
-        String expectedOutput = DummyBooks.bookOneName + " | " + DummyBooks.bookOneAuthor + " | " + DummyBooks.bookOneYearOfPublication + "\n";
-
-        System.out.println(book.getDetails());
-
-        assertEquals(expectedOutput, outContent.toString());
+        System.setOut(System.out);
     }
 }
