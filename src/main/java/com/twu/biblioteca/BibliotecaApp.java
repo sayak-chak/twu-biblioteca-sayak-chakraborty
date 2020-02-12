@@ -12,7 +12,6 @@ public class BibliotecaApp {
     }
 
     public static void main(String[] args) throws IOException, QuittingPlaceholderException {
-        InputOutputStream inputOutputStream = new InputOutputStream();
         AppInteraction appInteraction = new AppInteraction(new InputOutputStream());
         BookShelf bookShelf = new BookShelf(BookShelf.getDefaultList(), appInteraction);
         BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, appInteraction);
@@ -35,18 +34,18 @@ public class BibliotecaApp {
     private void actionOnChoosingAnOptionFromMenu(int choice) throws IOException, QuittingPlaceholderException {
         String inputBook;
         switch (choice) { // TODO: switch case
-            case 1: //List of books
+            case Menu.choiceDisplayBooks:
                 bookShelf.displayList();
                 break;
-            case 2: //Checkout
+            case Menu.choiceCheckout:
                 inputBook = appInteraction.readInput();
                 bookShelf.checkout(inputBook);
                 break;
-            case 3://Return
+            case Menu.choiceReturn:
                 inputBook = appInteraction.readInput();
                 bookShelf.returnBook(inputBook);
                 break;
-            case 4: //Quit
+            case Menu.choiceQuit:
                 throw new QuittingPlaceholderException();//System.exit(0);
             default:
                 appInteraction.invalidOption();
