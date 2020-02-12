@@ -1,20 +1,26 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Arrays.asList;
 
 public class BookShelf {
     private List<Book> booksInLibraryNow;
     private List<Book> checkedOutBooks;
     private AppInteraction appInteraction;
 
-    public BookShelf(InputOutputStream inputOutputStream) {
-        booksInLibraryNow = getDefaultBookList();
+    public BookShelf(List<Book> defaultBooks, AppInteraction appInteraction) {
+        this.booksInLibraryNow = new ArrayList<>(defaultBooks);
         checkedOutBooks = new ArrayList<>();
-        appInteraction = new AppInteraction(new InputOutputStream()); // TODO: Can be mocked
+        this.appInteraction = appInteraction;
+    }
+
+    public static List<Book> getDefaultList() {
+        Book bookOne = new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication);
+        Book bookTwo = new Book(DummyBooks.bookTwoName, DummyBooks.bookTwoAuthor, DummyBooks.bookTwoYearOfPublication);
+        return Arrays.asList(bookOne, bookTwo);
     }
 
     public void displayList() {
@@ -49,14 +55,9 @@ public class BookShelf {
     }
 
     private Book bookToBeReturned(String bookName) { //TODO: Optional => Optional class isn't changing this so unnecessary atm
-        for (Book book : checkedOutBooks) if (book.getName().equals(bookName)) return book;
+        for (Book book : checkedOutBooks)
+            if (book.getName().equals(bookName)) return book;
         return null;
-    }
-
-    private ArrayList<Book> getDefaultBookList() {
-        Book bookOne = new Book(DummyBooks.bookOneName, DummyBooks.bookOneAuthor, DummyBooks.bookOneYearOfPublication);
-        Book bookTwo = new Book(DummyBooks.bookTwoName, DummyBooks.bookTwoAuthor, DummyBooks.bookTwoYearOfPublication);
-        return new ArrayList<>(asList(bookOne, bookTwo));
     }
 
 }

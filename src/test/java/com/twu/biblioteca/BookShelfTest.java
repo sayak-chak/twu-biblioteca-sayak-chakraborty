@@ -1,102 +1,58 @@
 package com.twu.biblioteca;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 class BookShelfTest {
-    private ByteArrayOutputStream outContent;
     private BookShelf bookShelf;
+    private AppInteraction appInteraction;
+    private List<Book> bookList;
 
     @BeforeEach
     public void initialize() {
-        outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-        bookShelf = new BookShelf(new InputOutputStream());
-    }
-
-    @AfterEach
-    public void clear() {
-        outContent = null;
-        System.out.close();
-        bookShelf = null;
+        appInteraction = mock(AppInteraction.class);
+        bookList = BookShelf.getDefaultList();
+        bookShelf = new BookShelf(bookList, appInteraction);
     }
 
     @Test
     public void testShouldOutputListOfBooksWhenShelfHasMultipleBooks() {
-        String expected = EXPECTEDTESTOUTPUTS.bookList;
         bookShelf.displayList();
 
-        assertEquals(expected, outContent.toString());
-    }
-
-    @Test
-    public void testShouldCheckoutABookThatIsInBookList() {
-
-        bookShelf.checkout(DummyBooks.bookTwoName);
-
-        outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-        bookShelf.displayList();
-        assertEquals("1. " + DummyBooks.bookOneName + " | " + DummyBooks.bookOneAuthor + " | " + DummyBooks.bookOneYearOfPublication + "\n", outContent.toString());
+        verify(appInteraction, times(1)).printList(bookList);
     }
 
     @Test
     public void testShouldDisplaySuccessMessageOnSuccessfulCheckoutOfABook() {
-        String expected = Message.successfulCheckOut + "\n";
+        bookShelf.checkout(DummyBooks.bookOneName);
 
-        bookShelf.checkout(DummyBooks.bookTwoName);
-
-        assertEquals(expected, outContent.toString());
+        verify(appInteraction, times(1)).successfulCheckout();
     }
 
     @Test
     public void testShouldDisplayFailureMessageOnUnsuccessfulCheckoutOfABook() {
-        String expected = Message.checkOutFail + "\n";
-
         bookShelf.checkout("Invalid book");
 
-        assertEquals(expected, outContent.toString());
-    }
-
-    @Test
-    public void testShouldReturnABook() {
-        bookShelf.checkout(DummyBooks.bookTwoName);
-        bookShelf.returnBook(DummyBooks.bookTwoName);
-
-        outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-        bookShelf.displayList();
-
-        assertEquals("1. " + DummyBooks.bookOneName + " | " + DummyBooks.bookOneAuthor + " | " + DummyBooks.bookOneYearOfPublication + "\n2. " + DummyBooks.bookTwoName + " | " + DummyBooks.bookTwoAuthor + " | " + DummyBooks.bookTwoYearOfPublication + "\n", outContent.toString());
+        verify(appInteraction, times(1)).checkoutFail();
     }
 
     @Test
     public void testShouldNotifyOnSuccessfullyReturningABook() {
-        String expected = Message.successfulReturn + "\n";
         bookShelf.checkout(DummyBooks.bookTwoName);
-        outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-
         bookShelf.returnBook(DummyBooks.bookTwoName);
 
-        assertEquals(expected, outContent.toString());
+        verify(appInteraction, times(1)).successfulReturn();
     }
 
     @Test
     public void testShouldNotifyOnFailureToReturnABook() {
-        String expected = Message.returnFail + "\n";
-        bookShelf.checkout(DummyBooks.bookTwoName);
-        outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-
         bookShelf.returnBook("Invalid Book");
 
-        assertEquals(expected, outContent.toString());
+        verify(appInteraction, times(1)).returnFail();
     }
+
 }

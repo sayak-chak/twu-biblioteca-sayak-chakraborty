@@ -13,7 +13,9 @@ public class BibliotecaApp {
 
     public static void main(String[] args) throws IOException, QuittingPlaceholderException {
         InputOutputStream inputOutputStream = new InputOutputStream();
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(new BookShelf(inputOutputStream), inputOutputStream);
+        AppInteraction appInteraction = new AppInteraction(new InputOutputStream());
+        BookShelf bookShelf = new BookShelf(BookShelf.getDefaultList(), appInteraction);
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(bookShelf, inputOutputStream);
 
         bibliotecaApp.displayMenu();
         bibliotecaApp.chooseMenuOption();
