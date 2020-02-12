@@ -55,7 +55,7 @@ class BookLibraryTest {
     }
 
     @Test
-    public void testShouldDisplayFailureMessageOnUnsuccessfulCheckoutOfABook() throws IOException {
+    public void testShouldDisplayFailureMessageOnEnteringInvalidBookName() throws IOException {
         when(appInteraction.readInput()).thenReturn(String.valueOf(DummyUser.libraryNumber), DummyUser.password);
 
         bookLibrary.checkout("Invalid book");
