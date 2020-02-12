@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 import java.util.Objects;
 
-public class Book {
+public class Book implements Item {
     private String name, author;
     private int yearOfPublication;
 
@@ -12,10 +12,12 @@ public class Book {
         this.yearOfPublication = yearOfPublication;
     }
 
+    @Override
     public String getName() {
         return this.name;
     }
 
+    @Override
     public String getDetails() {
         return this.name + " | " + this.author + " | " + this.yearOfPublication;
     }
