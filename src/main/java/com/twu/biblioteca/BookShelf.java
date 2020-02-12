@@ -3,9 +3,9 @@ package com.twu.biblioteca;
 import java.util.List;
 
 
-public class BookShelf extends Library {
+public class BookShelf extends Library<Item> {
 
-    public BookShelf(List<Book> defaultBooks, AppInteraction appInteraction) {
+    public BookShelf(List<Item> defaultBooks, AppInteraction appInteraction) {
         super(defaultBooks, appInteraction);
     }
 
