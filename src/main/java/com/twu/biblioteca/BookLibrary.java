@@ -1,10 +1,18 @@
 package com.twu.biblioteca;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 
 public class BookLibrary extends Library {
+
+    private static HashMap<Integer, String> userAccounts;
+
+    static {
+        userAccounts = new HashMap<>();
+        userAccounts.put(DummyUser.libraryNumber, DummyUser.password);
+    }
 
     public BookLibrary(List<Item> defaultBooks, AppInteraction appInteraction) {
         super(defaultBooks, appInteraction);
@@ -15,7 +23,15 @@ public class BookLibrary extends Library {
 
         Integer userId = Integer.parseInt(appInteraction.readInput());
         String password = appInteraction.readInput();
-        super.checkout(itemName);
+        if (validCredentials(userId, password)) {
+            super.checkout(itemName);
+            return;
+        }
+        appInteraction.checkoutFail();
+    }
+
+    private boolean validCredentials(Integer userId, String password) {
+        return userAccounts.get(userId).equals(password);
     }
 
 }

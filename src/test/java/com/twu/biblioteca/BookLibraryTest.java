@@ -37,6 +37,15 @@ class BookLibraryTest {
     }
 
     @Test
+    public void testShouldFailureMessageWhenUserEntersValidBookToCheckoutAndIncorrectCredentials() throws IOException {
+        when(appInteraction.readInput()).thenReturn(String.valueOf(DummyUser.libraryNumber), "Invalid password");
+
+        bookLibrary.checkout(DummyBooks.bookOneName);
+
+        verify(appInteraction, times(1)).checkoutFail();
+    }
+
+    @Test
     public void testShouldDisplayFailureMessageOnUnsuccessfulCheckoutOfABook() throws IOException {
         when(appInteraction.readInput()).thenReturn(String.valueOf(DummyUser.libraryNumber), DummyUser.password);
 
