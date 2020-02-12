@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -19,7 +20,7 @@ public abstract class Library {
         appInteraction.printList(itemsInLibraryNow);
     }
 
-    public void checkout(String itemName) {
+    public void checkout(String itemName) throws IOException {
         Item item;
         Iterator<Item> itemIterator = itemsInLibraryNow.iterator();
         while (itemIterator.hasNext()) {

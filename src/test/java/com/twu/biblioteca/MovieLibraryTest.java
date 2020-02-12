@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -27,14 +28,14 @@ class MovieLibraryTest {
     }
 
     @Test
-    public void testShouldDisplaySuccessMessageOnSuccessfulCheckoutOfAMovie() {
+    public void testShouldDisplaySuccessMessageOnSuccessfulCheckoutOfAMovie() throws IOException {
         movieLibrary.checkout(DummyMovies.movieOneName);
 
         verify(appInteraction, times(1)).successfulCheckout();
     }
 
     @Test
-    public void testShouldDisplayFailureMessageOnUnsuccessfulCheckoutOfAMovie() {
+    public void testShouldDisplayFailureMessageOnUnsuccessfulCheckoutOfAMovie() throws IOException {
         movieLibrary.checkout("Invalid movie");
 
         verify(appInteraction, times(1)).checkoutFail();

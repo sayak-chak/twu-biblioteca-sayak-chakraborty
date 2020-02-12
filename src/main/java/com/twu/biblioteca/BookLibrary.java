@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -10,7 +11,10 @@ public class BookLibrary extends Library {
     }
 
     @Override
-    public void checkout(String itemName) {
+    public void checkout(String itemName) throws IOException {
+
+        Integer userId = Integer.parseInt(appInteraction.readInput());
+        String password = appInteraction.readInput();
         super.checkout(itemName);
     }
 
