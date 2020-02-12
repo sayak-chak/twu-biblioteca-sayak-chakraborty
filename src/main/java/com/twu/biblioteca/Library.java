@@ -16,6 +16,9 @@ public abstract class Library {
         this.appInteraction = appInteraction;
     }
 
+    protected Library() {
+    }
+
     public void displayList() {
         appInteraction.printList(itemsInLibraryNow);
     }

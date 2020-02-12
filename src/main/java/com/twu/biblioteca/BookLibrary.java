@@ -1,21 +1,19 @@
 package com.twu.biblioteca;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class BookLibrary extends Library {
 
-    private static HashMap<Integer, String> userCredentials;
+    private Authenticator authenticator;
 
-    static {
-        userCredentials = new HashMap<>();
-        userCredentials.put(DummyUser.libraryNumber, DummyUser.password);
-    }
-
-    public BookLibrary(List<Item> defaultBooks, AppInteraction appInteraction) {
-        super(defaultBooks, appInteraction);
+    public BookLibrary(List<Item> defaultBooks, AppInteraction appInteraction, Authenticator authenticator) {
+        super.itemsInLibraryNow = new ArrayList<>(defaultBooks);
+        super.checkedOutItems = new ArrayList<>();
+        super.appInteraction = appInteraction;
+        this.authenticator = authenticator;
     }
 
     @Override
@@ -32,7 +30,7 @@ public class BookLibrary extends Library {
 
     @Override
     public void returnItem(String itemName) throws IOException {
-        Integer userId = Integer.parseInt(appInteraction.readInput());
+        int userId = Integer.parseInt(appInteraction.readInput());
         String password = appInteraction.readInput();
         if (validCredentials(userId, password)) {
             super.returnItem(itemName);
@@ -41,8 +39,9 @@ public class BookLibrary extends Library {
         appInteraction.returnFail();
     }
 
+
     private boolean validCredentials(Integer userId, String password) {
-        return userCredentials.containsKey(userId) && userCredentials.get(userId).equals(password);
+        return authenticator.validUser(userId, password);
     }
 
 }

@@ -10,16 +10,16 @@ public class BibliotecaApp {
         this.bookLibrary = bookLibrary;
         this.appInteraction = appInteraction;
     }
-
-    public static void main(String[] args) throws IOException, QuittingPlaceholderException {
-        AppInteraction appInteraction = new AppInteraction(new InputOutputStream());
-        BookLibrary bookLibrary = new BookLibrary(DummyBooks.getDefaultList(), appInteraction);
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(bookLibrary, appInteraction);
-
-        bibliotecaApp.displayMenu();
-        bibliotecaApp.chooseMenuOption();
-
-    }
+//
+//    public static void main(String[] args) throws IOException, QuittingPlaceholderException {
+//        AppInteraction appInteraction = new AppInteraction(new InputOutputStream());
+//        BookLibrary bookLibrary = new BookLibrary(DummyBooks.getDefaultList(), appInteraction);
+//        BibliotecaApp bibliotecaApp = new BibliotecaApp(bookLibrary, appInteraction);
+//
+//        bibliotecaApp.displayMenu();
+//        bibliotecaApp.chooseMenuOption();
+//
+//    }
 
     public void displayMenu() {
         Menu.display();
