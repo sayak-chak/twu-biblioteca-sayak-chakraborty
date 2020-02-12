@@ -7,11 +7,11 @@ import java.util.List;
 
 public class BookLibrary extends Library {
 
-    private static HashMap<Integer, String> userAccounts;
+    private static HashMap<Integer, String> userCredentials;
 
     static {
-        userAccounts = new HashMap<>();
-        userAccounts.put(DummyUser.libraryNumber, DummyUser.password);
+        userCredentials = new HashMap<>();
+        userCredentials.put(DummyUser.libraryNumber, DummyUser.password);
     }
 
     public BookLibrary(List<Item> defaultBooks, AppInteraction appInteraction) {
@@ -42,7 +42,7 @@ public class BookLibrary extends Library {
     }
 
     private boolean validCredentials(Integer userId, String password) {
-        return userAccounts.containsKey(userId) && userAccounts.get(userId).equals(password);
+        return userCredentials.containsKey(userId) && userCredentials.get(userId).equals(password);
     }
 
 }
