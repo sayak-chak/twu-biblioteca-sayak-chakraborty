@@ -41,4 +41,10 @@ class MovieLibraryTest {
         verify(appInteraction, times(1)).checkoutFail();
     }
 
+    @Test
+    public void testShouldDisplayMovieMenuOptions() {
+        movieLibrary.displayMenu();
+
+        verify(appInteraction, times(1)).printList(Menu.movieMenuOptions);
+    }
 }

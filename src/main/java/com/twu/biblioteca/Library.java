@@ -9,7 +9,6 @@ public abstract class Library {
     protected List<Item> itemsInLibraryNow;
     protected List<Item> checkedOutItems;
     protected AppInteraction appInteraction;
-    protected Menu menu;
 
     public Library(List<Item> defaultItems, AppInteraction appInteraction) {
         this.itemsInLibraryNow = new ArrayList<>(defaultItems);
@@ -19,6 +18,7 @@ public abstract class Library {
 
     protected Library() {
     }
+
 
     public void displayList() {
         appInteraction.printList(itemsInLibraryNow);
@@ -38,6 +38,8 @@ public abstract class Library {
         }
         appInteraction.checkoutFail();
     }
+
+    public abstract void displayMenu();
 
     public void returnItem(String itemName) throws IOException {
         Item itemToBeReturned = itemToBeReturned(itemName);

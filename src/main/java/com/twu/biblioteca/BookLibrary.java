@@ -18,6 +18,7 @@ public class BookLibrary extends Library {
         this.isLoggedIn = false;
     }
 
+    @Override
     public void displayMenu() {
         if (!isLoggedIn) {
             appInteraction.printList(Menu.bookMenuOptionsForGuest);
