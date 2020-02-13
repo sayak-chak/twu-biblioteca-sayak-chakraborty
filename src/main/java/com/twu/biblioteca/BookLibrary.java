@@ -8,12 +8,18 @@ import java.util.List;
 public class BookLibrary extends Library {
 
     private Authenticator authenticator;
+    private boolean isLoggedIn;
 
     public BookLibrary(List<Item> defaultBooks, AppInteraction appInteraction, Authenticator authenticator) {
         super.itemsInLibraryNow = new ArrayList<>(defaultBooks);
         super.checkedOutItems = new ArrayList<>();
         super.appInteraction = appInteraction;
         this.authenticator = authenticator;
+        this.isLoggedIn = false;
+    }
+
+    public void displayMenu() {
+
     }
 
     @Override

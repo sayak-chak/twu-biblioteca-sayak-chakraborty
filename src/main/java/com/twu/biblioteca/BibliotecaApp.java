@@ -22,7 +22,7 @@ public class BibliotecaApp {
 //    }
 
     public void displayMenu() {
-        Menu.displayBookMenu();
+        bookLibrary.displayMenu();
     }
 
     @SuppressWarnings("InfiniteLoopStatement")

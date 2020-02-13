@@ -9,6 +9,7 @@ public abstract class Library {
     protected List<Item> itemsInLibraryNow;
     protected List<Item> checkedOutItems;
     protected AppInteraction appInteraction;
+    protected Menu menu;
 
     public Library(List<Item> defaultItems, AppInteraction appInteraction) {
         this.itemsInLibraryNow = new ArrayList<>(defaultItems);

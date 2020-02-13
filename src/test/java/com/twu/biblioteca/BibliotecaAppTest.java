@@ -3,11 +3,8 @@ package com.twu.biblioteca;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 
@@ -26,14 +23,10 @@ class BibliotecaAppTest {
 
     @Test
     public void testShouldDisplayTheMenu() {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
 
         bibliotecaApp.displayMenu();
 
-        assertEquals(ExpectedTestOutputs.menu, out.toString());
-
-        System.setOut(System.out);
+        verify(bookLibrary, times(1)).displayMenu();
     }
 
     @Test
