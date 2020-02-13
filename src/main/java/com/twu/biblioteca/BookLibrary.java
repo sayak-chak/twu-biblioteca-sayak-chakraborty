@@ -19,6 +19,11 @@ public class BookLibrary extends Library {
     }
 
     public void displayMenu() {
+        if (!isLoggedIn) {
+            appInteraction.printList(Menu.bookMenuOptionsForGuest);
+            return;
+        }
+        appInteraction.printList(Menu.bookMenuOptionsForUser);
 
     }
 
@@ -47,7 +52,8 @@ public class BookLibrary extends Library {
 
 
     private boolean validCredentials(Integer userId, String password) {
-        return authenticator.isValidUser(userId, password);
+        isLoggedIn = authenticator.isValidUser(userId, password);
+        return isLoggedIn; //TODO - makes sense?
     }
 
 }

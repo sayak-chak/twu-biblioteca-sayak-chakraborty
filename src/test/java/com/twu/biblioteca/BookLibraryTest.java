@@ -124,4 +124,24 @@ class BookLibraryTest {
         verify(appInteraction, times(1)).successfulCheckout();
         verify(appInteraction, times(1)).returnFail();
     }
+
+    @Test
+    public void testShouldDisplayMenuForGuestWhenNotLoggedIn() {
+        bookLibrary.displayMenu();
+
+        verify(appInteraction, times(1)).printList(Menu.bookMenuOptionsForGuest);
+
+    }
+
+    @Test
+    public void testShouldDisplayMenuOptionsForUserWhenLoggedIn() throws IOException {
+        //Logging In Successfully
+        when(appInteraction.readInput()).thenReturn(String.valueOf(DummyUser.libraryNumber), DummyUser.password);
+        when(authenticator.isValidUser(DummyUser.libraryNumber, DummyUser.password)).thenReturn(true);
+        bookLibrary.returnItem(DummyBooks.bookOneName);
+
+        bookLibrary.displayMenu();
+
+        verify(appInteraction, times(1)).printList(Menu.bookMenuOptionsForUser);
+    }
 }
